@@ -6,6 +6,7 @@
    ============================================================ */
 var CONFIG = {
   email:    'izanhernandez92@gmail.com',
+  formKey:  '133ca24f-8993-403a-a89a-6877d5b4df1d',   // Clave de Web3Forms (opcional). Si la rellenas, se usa en vez de FormSubmit
   linkedin: '[LINKEDIN AQUÍ]',
   github:   '[GITHUB AQUÍ]',
   kit:      '[ENLACE AQUÍ]',   // Kit multimedia
@@ -60,6 +61,21 @@ for (var k in CONFIG) CONFIG[k] = CONFIG[k].replace(/^\[(.*(@|https?:).*)\]$/, '
       if(em.charAt(0) === '['){ s.textContent = 'Aún falta configurar el email en js/main.js.'; return; }
       var d = new FormData(form);
       btn.disabled = true; s.textContent = 'Enviando…';
+      if(CONFIG.formKey){
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json','Accept':'application/json'},
+          body: JSON.stringify({access_key:CONFIG.formKey, name:d.get('nombre'), email:d.get('correo'), subject:d.get('asunto'), message:d.get('mensaje')})
+        }).then(function(r){ return r.json(); }).then(function(j){
+          if(j.success){ form.reset(); s.textContent = '¡Mensaje enviado! Te responderé pronto.'; }
+          else throw new Error(j.message || 'fallo');
+        }).catch(function(err){
+          console.warn('Web3Forms:', err);
+          var g = 'https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent(em)+'&su='+encodeURIComponent(d.get('asunto'))+'&body='+encodeURIComponent(d.get('mensaje'));
+          s.innerHTML = 'No se ha podido enviar. Puedes <a href="'+g+'" target="_blank" rel="noopener">abrir el mensaje en Gmail</a> o escribirme a '+em+'.';
+        }).then(function(){ btn.disabled = false; });
+        return;
+      }
       fetch('https://formsubmit.co/ajax/' + em, {
         method: 'POST',
         headers: {'Content-Type':'application/json','Accept':'application/json'},
