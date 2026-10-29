@@ -45,8 +45,15 @@ for (var k in CONFIG) CONFIG[k] = CONFIG[k].replace(/^\[(.*(@|https?:).*)\]$/, '
   });
 
   // Formulario de contacto: el mensaje llega a tu email sin abrir ningún programa
+  function nativePost(em, d){
+    var f = document.createElement('form'); f.method = 'POST'; f.action = 'https://formsubmit.co/' + em;
+    var fields = {name:d.get('nombre'), email:d.get('correo'), message:d.get('mensaje'), _subject:d.get('asunto'), _template:'table', _captcha:'false', _next:location.href.split(/[?#]/)[0] + '?enviado=1'};
+    for(var k in fields){ var i = document.createElement('input'); i.type = 'hidden'; i.name = k; i.value = fields[k]; f.appendChild(i); }
+    document.body.appendChild(f); f.submit();
+  }
   var form = document.getElementById('contact-form');
   if(form){
+    if(/[?&]enviado=1/.test(location.search)) document.getElementById('status').textContent = '¡Mensaje enviado! Te responderé pronto.';
     form.addEventListener('submit', function(e){
       e.preventDefault();
       var s = document.getElementById('status'), btn = form.querySelector('button'), em = CONFIG.email;
@@ -58,13 +65,13 @@ for (var k in CONFIG) CONFIG[k] = CONFIG[k].replace(/^\[(.*(@|https?:).*)\]$/, '
         headers: {'Content-Type':'application/json','Accept':'application/json'},
         body: JSON.stringify({name:d.get('nombre'), email:d.get('correo'), message:d.get('mensaje'), _subject:d.get('asunto'), _template:'table', _captcha:'false'})
       }).then(function(r){ return r.json(); }).then(function(j){
-        if(j.success === true || j.success === 'true'){ form.reset(); s.textContent = '¡Mensaje enviado! Te responderé pronto.'; }
-        else throw new Error('fallo');
-      }).catch(function(){
-        var g = 'https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent(em)+'&su='+encodeURIComponent(d.get('asunto'))+'&body='+encodeURIComponent(d.get('mensaje'));
-        s.innerHTML = (location.protocol === 'file:' ? 'El envío automático solo funciona con la web publicada, no desde un archivo local. ' : 'No se ha podido enviar. ') +
-          'Puedes <a href="'+g+'" target="_blank" rel="noopener">abrir el mensaje en Gmail</a> o escribirme a '+em+'.';
-      }).then(function(){ btn.disabled = false; });
+        if(j.success === true || j.success === 'true'){ form.reset(); s.textContent = '¡Mensaje enviado! Te responderé pronto.'; btn.disabled = false; }
+        else throw new Error(j.message || 'fallo');
+      }).catch(function(err){
+        console.warn('Envío AJAX fallido:', err);
+        s.textContent = 'Reintentando con envío directo…';
+        setTimeout(function(){ nativePost(em, d); }, 500);
+      });
     });
   }
 
