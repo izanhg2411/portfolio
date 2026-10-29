@@ -11,12 +11,12 @@ var CONFIG = {
   github:   'https://github.com/izanhg2411',
   kit:      '[ENLACE AQUÍ]',   // Kit multimedia
   freno:    '[ENLACE AQUÍ]',   // Freno AI
-  vantor:   '[ENLACE AQUÍ]',   // Vantor V12
+  vantor:   'https://vantor-v12.vercel.app',   // Vantor V12
   outfit:   '[ENLACE AQUÍ]',   // Outfit AI
   // Enlaces al código (repositorio) de cada proyecto
   kitCode:    '[ENLACE AQUÍ]',
   frenoCode:  '[ENLACE AQUÍ]',
-  vantorCode: '[ENLACE AQUÍ]',
+  vantorCode: 'https://github.com/izanhg2411/vantor-v12',
   outfitCode: '[ENLACE AQUÍ]'
 };
 
