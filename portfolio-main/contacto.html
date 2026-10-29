@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contacto · Izan Hernández</title>
+<meta name="description" content="Contacta con Izan por email, LinkedIn o GitHub.">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/main.js" defer></script>
+</head>
+<body data-page="contacto">
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div id="site-header"></div>
+<noscript><p class="wrap"><a href="index.html">Inicio</a> · <a href="contacto.html">Contacto</a></p></noscript>
+<main id="contenido">
+<div class="page-head"><div class="wrap"><h1 class="title">Contacto</h1>
+ <p class="lead">¿Tienes una propuesta, una oferta o quieres hablar de un proyecto? Escríbeme y te respondo.</p></div></div>
+<section><div class="wrap"><div class="contact-layout">
+ <div class="stack">
+  <a class="card lk" data-link="email" href="#"><strong>Email</strong><span class="val"></span></a>
+  <a class="card lk" data-link="linkedin" href="#"><strong>LinkedIn</strong><span class="val"></span></a>
+  <a class="card lk" data-link="github" href="#"><strong>GitHub</strong><span class="val"></span></a>
+ </div>
+ <div class="card">
+  <h2 class="sub" style="margin-top:0">Envíame un mensaje</h2>
+  <form class="form" id="contact-form">
+   <div><label for="nombre">Nombre</label><input id="nombre" name="nombre" autocomplete="name" required></div>
+   <div><label for="correo">Tu correo</label><input id="correo" name="correo" type="email" autocomplete="email" required></div>
+   <div><label for="asunto">Asunto</label><input id="asunto" name="asunto" required></div>
+   <div><label for="mensaje">Mensaje</label><textarea id="mensaje" name="mensaje" required></textarea></div>
+   <button class="btn primary" type="submit">Enviar mensaje</button>
+   <p id="status" role="status" aria-live="polite"></p>
+   <p class="note">Tu mensaje me llegará directamente por email.</p>
+  </form>
+ </div>
+</div></div></section>
+</main>
+<footer id="site-footer"></footer>
+</body>
+</html>
