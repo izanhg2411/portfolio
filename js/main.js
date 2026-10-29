@@ -8,11 +8,11 @@ var CONFIG = {
   email:    'izanhernandez92@gmail.com',
   formKey:  '133ca24f-8993-403a-a89a-6877d5b4df1d',   // Clave de Web3Forms (opcional). Si la rellenas, se usa en vez de FormSubmit
   linkedin: '[LINKEDIN AQUÍ]',
-  github:   '[GITHUB AQUÍ]',
+  github:   'https://github.com/izanhg2411',
   kit:      '[ENLACE AQUÍ]',   // Kit multimedia
   freno:    '[ENLACE AQUÍ]',   // Freno AI
   vantor:   '[ENLACE AQUÍ]',   // Vantor V12
-  outfit:   '[ENLACE AQUÍ]'    // Ouftit AI
+  outfit:   '[ENLACE AQUÍ]'    // Outfit AI
 };
 
 for (var k in CONFIG) CONFIG[k] = CONFIG[k].replace(/^\[(.*(@|https?:).*)\]$/, '$1');
