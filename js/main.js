@@ -14,10 +14,10 @@ var CONFIG = {
   vantor:   'https://vantor-v12.vercel.app',   // Vantor V12
   outfit:   '[ENLACE AQUÍ]',   // Outfit AI
   // Enlaces al código (repositorio) de cada proyecto
-  kitCode:    '[ENLACE AQUÍ]',
-  frenoCode:  '[ENLACE AQUÍ]',
+  kitCode:    'https://github.com/izanhg2411/kit-multimedia',
+  frenoCode:  'https://github.com/izanhg2411/freno-ai',
   vantorCode: 'https://github.com/izanhg2411/vantor-v12',
-  outfitCode: '[ENLACE AQUÍ]'
+  outfitCode: 'https://github.com/izanhg2411/outfitai'
 };
 
 for (var k in CONFIG) CONFIG[k] = CONFIG[k].replace(/^\[(.*(@|https?:).*)\]$/, '$1');
