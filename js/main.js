@@ -12,7 +12,12 @@ var CONFIG = {
   kit:      '[ENLACE AQUÍ]',   // Kit multimedia
   freno:    '[ENLACE AQUÍ]',   // Freno AI
   vantor:   '[ENLACE AQUÍ]',   // Vantor V12
-  outfit:   '[ENLACE AQUÍ]'    // Outfit AI
+  outfit:   '[ENLACE AQUÍ]',   // Outfit AI
+  // Enlaces al código (repositorio) de cada proyecto
+  kitCode:    '[ENLACE AQUÍ]',
+  frenoCode:  '[ENLACE AQUÍ]',
+  vantorCode: '[ENLACE AQUÍ]',
+  outfitCode: '[ENLACE AQUÍ]'
 };
 
 for (var k in CONFIG) CONFIG[k] = CONFIG[k].replace(/^\[(.*(@|https?:).*)\]$/, '$1');
@@ -44,6 +49,38 @@ for (var k in CONFIG) CONFIG[k] = CONFIG[k].replace(/^\[(.*(@|https?:).*)\]$/, '
     if(/^https?/.test(v)){ a.target = '_blank'; a.rel = 'noopener'; }
     if(a.querySelector('.val')) t.textContent = v.replace(/^https?:\/\/(www\.)?/, '');
   });
+
+  // Proyectos: botones "Ver proyecto" / "Código" (se rellenan desde CONFIG)
+  document.querySelectorAll('[data-pj]').forEach(function(a){
+    var v = CONFIG[a.dataset.pj] || '';
+    if(!v || v.charAt(0) === '['){
+      a.removeAttribute('href'); a.setAttribute('aria-disabled','true'); a.title = 'Enlace pendiente: configúralo en js/main.js';
+      a.insertAdjacentHTML('beforeend','<small>Pronto</small>');
+      return;
+    }
+    a.href = v;
+    if(/^https?/.test(v)){ a.target = '_blank'; a.rel = 'noopener'; }
+  });
+
+  // Proyectos: si existe la captura (img/proyectos/...), sustituye al marcador
+  document.querySelectorAll('.pj-shot[data-img]').forEach(function(box){
+    var im = new Image();
+    im.onload = function(){
+      im.alt = box.dataset.alt || ''; im.decoding = 'async';
+      box.querySelector('.pj-canvas').appendChild(im); box.classList.add('has-img');
+    };
+    im.src = box.dataset.img;
+  });
+
+  // Vantor V12: el foco de luz sigue al puntero
+  var vf = document.querySelector('.pj-feature');
+  if(vf && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    vf.addEventListener('pointermove', function(e){
+      var r = vf.getBoundingClientRect();
+      vf.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      vf.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  }
 
   // Formulario de contacto: el mensaje llega a tu email sin abrir ningún programa
   function nativePost(em, d){
@@ -92,7 +129,7 @@ for (var k in CONFIG) CONFIG[k] = CONFIG[k].replace(/^\[(.*(@|https?:).*)\]$/, '
   }
 
   // Aparición al hacer scroll
-  var els = document.querySelectorAll('main .card,main .tags,main .sub,main .lead,main .band,main .hero .wrap,main h1.title,main h2');
+  var els = document.querySelectorAll('main .card,main .pj,main .tags,main .sub,main .lead,main .band,main .hero .wrap,main h1.title,main h2');
   els.forEach(function(e){ e.classList.add('rv'); });
   if('IntersectionObserver' in window){
     var io = new IntersectionObserver(function(es){
