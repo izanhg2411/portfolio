@@ -6,16 +6,14 @@
    ============================================================ */
 var CONFIG = {
   email:    'izanhernandez92@gmail.com',
-  formKey:  '133ca24f-8993-403a-a89a-6877d5b4df1d',   // Clave de Web3Forms (opcional). Si la rellenas, se usa en vez de FormSubmit
-  linkedin: '[LINKEDIN AQUÍ]',
+  formKey:  '133ca24f-8993-403a-a89a-6877d5b4df1d',   // Clave pública de Web3Forms (si se vacía, se usa FormSubmit)
+  linkedin: '[LINKEDIN AQUÍ]',                        // Si empieza por "[" la tarjeta se oculta
   github:   'https://github.com/izanhg2411',
-  kit:      '[ENLACE AQUÍ]',   // Kit multimedia
-  freno:    '[ENLACE AQUÍ]',   // Freno AI
-  vantor:   'https://vantor-v12.vercel.app',   // Vantor V12
-  outfit:   '[ENLACE AQUÍ]',   // Outfit AI
-  // Enlaces al código (repositorio) de cada proyecto
+  // Demos (solo los proyectos que tienen una web publicada)
+  vantor:   'https://vantor-v12.vercel.app',
+  // Código en GitHub. Si empieza por "[" el botón se muestra como "Pronto"
   kitCode:    'https://github.com/izanhg2411/kit-multimedia',
-  frenoCode:  'https://github.com/izanhg2411/freno-ai',
+  frenoCode:  '[PENDIENTE: repositorio de Freno AI]',
   vantorCode: 'https://github.com/izanhg2411/vantor-v12',
   outfitCode: 'https://github.com/izanhg2411/outfitai'
 };
@@ -35,15 +33,19 @@ for (var k in CONFIG) CONFIG[k] = CONFIG[k].replace(/^\[(.*(@|https?:).*)\]$/, '
     h.outerHTML = '<header><nav class="wrap" aria-label="Navegación principal"><a class="logo" href="index.html">Izan<span>.</span>dev</a><button class="burger" aria-expanded="false" aria-controls="menu">Menú</button><ul class="menu" id="menu">'+items+'</ul></nav></header>';
   }
   var f = document.getElementById('site-footer');
-  if(f) f.innerHTML = '<div class="wrap">© '+new Date().getFullYear()+' Izan Hernández García Cabañes Fernández · Portfolio de la actividad “Crea tu marca personal” (IPE II)</div>';
+  if(f) f.innerHTML = '<div class="wrap">© '+new Date().getFullYear()+' Izan Hernández García Cabañes Fernández · Estudiante de DAW · <a href="https://github.com/izanhg2411" target="_blank" rel="noopener">GitHub</a></div>';
 
   var b = document.querySelector('.burger'), m = document.getElementById('menu');
   b.addEventListener('click', function(){ b.setAttribute('aria-expanded', m.classList.toggle('open')); });
+  function closeMenu(){ m.classList.remove('open'); b.setAttribute('aria-expanded','false'); }
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeMenu(); });
+  m.addEventListener('click', function(e){ if(e.target.tagName === 'A') closeMenu(); });
 
   // Enlaces desde CONFIG
   document.querySelectorAll('[data-link]').forEach(function(a){
     var k = a.dataset.link, v = CONFIG[k] || '', ph = !v || v.charAt(0) === '[';
     var t = a.querySelector('.val') || a;
+    if(ph && a.classList.contains('lk')){ a.remove(); return; }
     if(ph){ a.setAttribute('href','#'); t.innerHTML = '<span class="ph">'+(v || '[ENLACE AQUÍ]')+'</span>'; return; }
     a.href = k === 'email' ? 'mailto:'+v : v;
     if(/^https?/.test(v)){ a.target = '_blank'; a.rel = 'noopener'; }
@@ -62,15 +64,13 @@ for (var k in CONFIG) CONFIG[k] = CONFIG[k].replace(/^\[(.*(@|https?:).*)\]$/, '
     if(/^https?/.test(v)){ a.target = '_blank'; a.rel = 'noopener'; }
   });
 
-  // Proyectos: si existe la captura (img/proyectos/...), sustituye al marcador
-  document.querySelectorAll('.pj-shot[data-img]').forEach(function(box){
-    var im = new Image();
-    im.onload = function(){
-      im.alt = box.dataset.alt || ''; im.decoding = 'async';
-      box.querySelector('.pj-canvas').appendChild(im); box.classList.add('has-img');
-    };
-    im.src = box.dataset.img;
-  });
+  // CV: los botones solo aparecen si existe cv/Izan-Hernandez-CV.pdf
+  var cvs = document.querySelectorAll('[data-cv]');
+  if(cvs.length && window.fetch){
+    fetch(cvs[0].getAttribute('href'), {method:'HEAD'}).then(function(r){
+      if(r.ok) cvs.forEach(function(a){ a.hidden = false; });
+    }).catch(function(){});
+  }
 
   // Vantor V12: el foco de luz sigue al puntero
   var vf = document.querySelector('.pj-feature');

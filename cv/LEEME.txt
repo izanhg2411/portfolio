@@ -1,0 +1,6 @@
+Coloca aquí tu currículum con este nombre exacto:
+
+    Izan-Hernandez-CV.pdf
+
+Cuando el archivo exista, los botones "Descargar CV" aparecerán solos en Inicio, Sobre mí y Contacto.
+Mientras no exista, permanecen ocultos. Borra este LEEME.txt si quieres.
