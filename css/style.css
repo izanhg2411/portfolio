@@ -231,7 +231,8 @@ footer a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 
 /* Página TEORIQ */
 .tq-hero{display:grid;gap:2rem;align-items:center;padding:4rem 0 1rem}
-@media(min-width:900px){.tq-hero{grid-template-columns:1.1fr 1fr}}
+@media(min-width:900px){.tq-hero{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}}
+.tq-hero>*{min-width:0}
 .tq-hero h1{font-size:clamp(2.6rem,8vw,4.6rem);margin:1.1rem 0 .8rem;letter-spacing:-.02em}
 .tq-hero h1 em{font-style:normal;color:var(--accent)}
 .tq-hero .hero-sub{margin:0 0 1rem}
@@ -241,7 +242,8 @@ footer a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 .tq-shot .pj-bar{background:#0d1f3d;border-color:#1f3560}
 .tq-shot .pj-bar i{background:#2a4373}
 .tq-shot .pj-bar i:first-child{background:#ff8a3d}
-.tq-shot img{display:block;width:100%;height:auto}
+.tq-shot{width:100%;max-width:100%}
+.tq-shot img{display:block;width:100%;max-width:100%;height:auto}
 .btn.disabled,.btn[aria-disabled="true"]{border-style:dashed;border-color:var(--field);color:var(--muted);cursor:not-allowed;background:transparent}
 .btn.disabled:hover,.btn[aria-disabled="true"]:hover{transform:none}
 .btn small{font:600 .68rem 'Inter',sans-serif;color:var(--text);background:color-mix(in srgb,var(--accent-fill) 22%,transparent);border-radius:999px;padding:.08rem .5rem;margin-left:.4rem;vertical-align:middle}
@@ -290,3 +292,10 @@ footer a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 .tq-list li{position:relative;padding-left:1.35rem;line-height:1.55}
 .tq-list li::before{content:"";position:absolute;left:.1rem;top:.55em;width:.5rem;height:.5rem;border-radius:2px;background:var(--accent-fill);transform:rotate(45deg)}
 .tq-back{margin-top:1.8rem}
+
+/* Fichas de extensión (kit, freno, outfit) */
+.tq-gallery.one{grid-template-columns:1fr;max-width:820px;margin-inline:auto}
+.tq-gallery.one img{aspect-ratio:auto}
+.tq-shot.light{background:var(--surface)}
+.pj-wide .pj-canvas img{object-position:top center}
+.pj-section .pj-wide+.pj-wide{margin-top:0}
