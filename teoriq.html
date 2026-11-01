@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TEORIQ · Proyectos · Izan Hernández</title>
+<meta name="description" content="TEORIQ: extensión de Chrome (Manifest V3, TypeScript, React) que registra automáticamente las respuestas del test teórico del permiso B, analiza los errores y propone un plan de repaso. Proyecto de Izan Hernández.">
+
+<meta name="theme-color" content="#071226">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<meta property="og:type" content="website"><meta property="og:locale" content="es_ES">
+<meta property="og:title" content="TEORIQ · Izan Hernández"><meta property="og:description" content="Extensión de Chrome que convierte tu historial de tests del permiso B en un plan de estudio personalizado.">
+<meta property="og:url" content="https://izanhg2411.github.io/portfolio/teoriq.html">
+<meta property="og:image" content="https://izanhg2411.github.io/portfolio/img/proyectos/teoriq/teoriq-resumen.webp">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/main.js" defer></script>
+</head>
+<body data-page="proyectos">
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div id="site-header"></div>
+<noscript><p class="wrap"><a href="index.html">Inicio</a> · <a href="proyectos.html">Proyectos</a> · <a href="contacto.html">Contacto</a></p></noscript>
+<main id="contenido">
+
+<!-- A. Hero -->
+<div class="wrap">
+ <div class="tq-hero">
+  <div>
+   <span class="eyebrow">Extensión de Chrome · Permiso B</span>
+   <h1><em>TEORIQ</em></h1>
+   <p class="hero-sub">Extensión que registra automáticamente tus respuestas en los tests del examen teórico de conducir, analiza tus errores y te dice qué repasar cada día. Primera integración: AEOLCLOUD.</p>
+   <div class="chips" aria-label="Tecnologías"><span>Manifest V3</span><span>TypeScript</span><span>React 19</span><span>Chrome Storage API</span><span>MutationObserver</span><span>esbuild</span><span>Playwright</span></div>
+   <div class="cta">
+    <a class="btn primary" href="proyectos.html#teoriq">← Volver a proyectos</a>
+    <a class="btn ghost" data-pj="teoriqCode" href="#">Código en GitHub</a>
+   </div>
+  </div>
+  <figure class="tq-shot">
+   <div class="pj-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+   <img src="img/proyectos/teoriq/teoriq-resumen.webp" alt="Tres pantallas reales del panel lateral de TEORIQ: Hoy, Estadísticas y Repaso" width="1600" height="1000" decoding="async">
+  </figure>
+ </div>
+</div>
+
+<!-- B. Problema -->
+<section class="tq-sec"><div class="wrap">
+ <h2>El problema</h2>
+ <p class="lead">Hacer tests genera muchos datos que normalmente se pierden: qué preguntas fallas, cuáles repites una y otra vez, en qué temas flojeas y cómo evolucionas.</p>
+ <div class="tq-two">
+  <div class="card"><h3>Por qué lo desarrollé</h3><p>Un test da el resultado pregunta a pregunta, pero no una visión de conjunto. Quise saber dónde fallo de verdad y qué repasar hoy sin llevar apuntes a mano.</p></div>
+  <div class="card"><h3>Qué propone TEORIQ</h3><p>Convertir cada test en información útil: registrar los intentos sin esfuerzo, detectar puntos débiles y organizar el repaso con un método de repetición espaciada.</p></div>
+ </div>
+</div></section>
+
+<!-- C. Solución -->
+<section class="tq-sec"><div class="wrap">
+ <h2>La solución</h2>
+ <p class="lead">Así funciona, de principio a fin. El usuario solo hace tests; el resto ocurre en segundo plano.</p>
+ <ol class="tq-steps">
+  <li><strong>Haces tests en AEOLCLOUD</strong><span>Como siempre, en la plataforma.</span></li>
+  <li><strong>TEORIQ detecta la respuesta</strong><span>Observa la página y espera a que la corrección sea real y estable.</span></li>
+  <li><strong>Registra el intento en local</strong><span>Una captura por intento, sin duplicados.</span></li>
+  <li><strong>Analiza el historial</strong><span>Aciertos, fallos y evolución por temas.</span></li>
+  <li><strong>Identifica puntos débiles</strong><span>Temas con más fallos y preguntas falladas varias veces.</span></li>
+  <li><strong>Propone qué repasar</strong><span>Preguntas del día y plan de estudio según tu fecha de examen.</span></li>
+ </ol>
+</div></section>
+
+<!-- D. Funcionalidades -->
+<section class="tq-sec"><div class="wrap">
+ <h2>Funcionalidades</h2>
+ <p class="lead">El panel lateral se organiza en seis secciones: Hoy, Estadísticas, Repaso, Plan, Capturas y Datos.</p>
+ <div class="tq-feats">
+  <div class="card"><span class="num">01</span><h3>Captura automática</h3><p>Registra cada pregunta que contestas, con su resultado, la opción elegida, la correcta y la hora.</p></div>
+  <div class="card"><span class="num">02</span><h3>Aciertos, fallos y dudas</h3><p>Detecta la corrección en pantalla. Si algo es ambiguo, lo guarda como «pendiente de revisión» y no cuenta hasta que lo confirmas.</p></div>
+  <div class="card"><span class="num">03</span><h3>Estadísticas por temas</h3><p>Porcentaje de fallos por tema, con aviso cuando hay pocos datos para fiarse. Los temas se asignan con reglas locales por palabras clave y se pueden corregir a mano.</p></div>
+  <div class="card"><span class="num">04</span><h3>Preguntas problemáticas</h3><p>Detecta las preguntas falladas dos o más veces y las prioriza en el repaso; además, muestra las últimas falladas en la pestaña Hoy.</p></div>
+  <div class="card"><span class="num">05</span><h3>Repaso con Leitner</h3><p>Sistema de cajas con intervalos de 1, 3, 7, 14 y 30 días. Un fallo devuelve la pregunta a la primera caja.</p></div>
+  <div class="card"><span class="num">06</span><h3>Plan de estudio</h3><p>Según tu fecha de examen y los minutos y preguntas que quieres dedicar al día. Con examen cercano, acorta los intervalos largos.</p></div>
+  <div class="card"><span class="num">07</span><h3>Imágenes de preguntas</h3><p>Guarda una copia reducida (JPEG de unos 380 px) para ver la pregunta completa en el repaso, con un límite de espacio controlado.</p></div>
+  <div class="card"><span class="num">08</span><h3>Copias de seguridad</h3><p>Exporta e importa el historial en JSON, fusionando sin duplicados o reemplazando. Los archivos inválidos se rechazan.</p></div>
+  <div class="card"><span class="num">09</span><h3>Revisión manual</h3><p>La pestaña Capturas permite resolver dudosas, cambiar el tema de una pregunta o borrar intentos.</p></div>
+ </div>
+</div></section>
+
+<!-- Capturas -->
+<section class="tq-sec"><div class="wrap">
+ <h2>Capturas reales</h2>
+ <p class="lead">Pantallas del panel lateral con datos de uso real durante las primeras pruebas.</p>
+ <div class="tq-gallery">
+  <figure><img src="img/proyectos/teoriq/panel-hoy.webp" alt="Pestaña Hoy de TEORIQ: porcentaje de aciertos, temas donde más se falla y qué estudiar hoy" width="406" height="942" loading="lazy" decoding="async"><figcaption><strong>Hoy</strong>Resumen de aciertos, temas con más fallos y propuesta de repaso del día.</figcaption></figure>
+  <figure><img src="img/proyectos/teoriq/panel-estadisticas.webp" alt="Pestaña Estadísticas de TEORIQ con el porcentaje de fallos por tema" width="408" height="896" loading="lazy" decoding="async"><figcaption><strong>Estadísticas</strong>Fallos por tema, indicando cuándo hay pocos datos para que no sean fiables.</figcaption></figure>
+  <figure><img src="img/proyectos/teoriq/panel-repaso.webp" alt="Pestaña Repaso de TEORIQ con una pregunta y su imagen" width="405" height="432" loading="lazy" decoding="async"><figcaption><strong>Repaso</strong>Pregunta del día con su imagen. Encuadre recortado por la parte inferior de la foto.</figcaption></figure>
+ </div>
+ <p class="tq-pending"><strong>Capturas pendientes de añadir:</strong> Plan, Capturas y Datos. Se incorporarán cuando estén hechas; no se muestran imágenes simuladas.</p>
+</div></section>
+
+<!-- E. Arquitectura -->
+<section class="tq-sec"><div class="wrap">
+ <h2>Arquitectura y tecnologías</h2>
+ <p class="lead">El código específico de cada plataforma está aislado en un adaptador, de modo que el resto de la extensión no depende de AEOLCLOUD.</p>
+ <ol class="tq-flow" aria-label="Flujo de datos">
+  <li><b>AEOLCLOUD</b><span>Página con tests</span></li>
+  <li class="core"><b>Adaptador + motor de captura</b><span>Content script</span></li>
+  <li class="core"><b>Service worker</b><span>Único que escribe datos</span></li>
+  <li class="core"><b>chrome.storage.local</b><span>Historial en tu navegador</span></li>
+  <li class="core"><b>Panel lateral</b><span>React · estadísticas y repaso</span></li>
+ </ol>
+ <ul class="tq-arch">
+  <li><b>Adaptador de AEOLCLOUD</b><small>Lee la pregunta, las opciones, la corrección y la imagen. Es el único código ligado a la plataforma.</small></li>
+  <li><b>Motor de captura</b><small>Usa un MutationObserver, espera a que la corrección se estabilice y emite una captura por intento.</small></li>
+  <li><b>Service worker</b><small>Recibe las capturas y las guarda con una cola serializada y sin duplicados.</small></li>
+  <li><b>Almacenamiento local</b><small>Persistencia en la Chrome Storage API, con copias de seguridad en JSON.</small></li>
+  <li><b>Panel lateral</b><small>Interfaz en React con las seis secciones.</small></li>
+  <li><b>Motor de estadísticas y repaso</b><small>Calcula estadísticas por tema, deriva el estado Leitner a partir del historial y genera el plan de estudio.</small></li>
+ </ul>
+ <div class="chips" aria-label="Tecnologías"><span>Chrome Extensions Manifest V3</span><span>TypeScript</span><span>React 19</span><span>JavaScript</span><span>HTML5 y CSS3</span><span>Chrome Storage API</span><span>MutationObserver</span><span>esbuild</span><span>Playwright</span><span>Node.js (pruebas)</span></div>
+</div></section>
+
+<!-- F. Privacidad -->
+<section class="tq-sec"><div class="wrap">
+ <h2>Privacidad</h2>
+ <p class="lead">Es una herramienta personal de estudio y el diseño parte de recoger lo mínimo.</p>
+ <div class="tq-two">
+  <div class="card"><h3>Qué garantiza el diseño</h3><ul class="tq-list"><li>Los datos permanecen en tu dispositivo</li><li>No necesita cuenta</li><li>No utiliza servidores propios</li><li>No incorpora analítica</li><li>No depende de una API de IA de pago: no tiene funciones de IA</li></ul></div>
+  <div class="card"><h3>Permisos mínimos</h3><p>Solo pide <code>storage</code> y <code>sidePanel</code>, y su script únicamente se ejecuta en <code>cloud.aeolservice.es</code>. No accede a otras pestañas ni a otros sitios.</p><p>Es un proyecto independiente, no afiliado a AEOLCLOUD ni a la DGT.</p></div>
+ </div>
+</div></section>
+
+<!-- G. Retos -->
+<section class="tq-sec"><div class="wrap">
+ <h2>Retos técnicos</h2>
+ <p class="lead">Lo más delicado fue leer con fiabilidad una página que no está pensada para ser leída por otra herramienta.</p>
+ <div class="tq-feats">
+  <div class="card"><h3>Cambios dinámicos de AngularJS</h3><p>La página se redibuja constantemente. El estado se lleva por pregunta y no por nodo del DOM, porque Angular puede recrear el elemento sin que el intento cambie.</p></div>
+  <div class="card"><h3>¿Está realmente corregida?</h3><p>Comprueba la visibilidad real de los iconos de acierto y fallo (clases, estilos y ancestros) antes de dar nada por válido.</p></div>
+  <div class="card"><h3>Evitar duplicados</h3><p>Una sola captura por intento y descarte de repeticiones por re-renderizados o dobles envíos.</p></div>
+  <div class="card"><h3>Correcciones por partes</h3><p>Espera 500 ms de estabilidad antes de guardar. Si pasas a la siguiente pregunta antes de ese tiempo, se guarda lo último leído en lugar de perder el intento.</p></div>
+  <div class="card"><h3>Respuestas ambiguas</h3><p>Cualquier combinación dudosa se marca como pendiente de revisión y no entra en las estadísticas hasta confirmarla.</p></div>
+  <div class="card"><h3>Imágenes y persistencia</h3><p>La foto viene incrustada en la página; se reduce con un canvas y se guarda con un presupuesto de espacio. El historial se conserva entre sesiones y se puede exportar.</p></div>
+ </div>
+</div></section>
+
+<!-- H. Resultados -->
+<section class="tq-sec"><div class="wrap">
+ <h2>Resultados y pruebas</h2>
+ <p class="lead">Estado de la última auditoría del proyecto (documentada en su <code>ESTADO_PROYECTO.md</code>).</p>
+ <div class="tq-stats">
+  <div class="tq-stat"><b>53</b><span>pruebas unitarias</span></div>
+  <div class="tq-stat"><b>24</b><span>comprobaciones E2E</span></div>
+  <div class="tq-stat"><b>0</b><span>errores de TypeScript</span></div>
+  <div class="tq-stat"><b>OK</b><span>build correcto</span></div>
+ </div>
+ <p class="tq-note"><strong>Alcance real de las pruebas:</strong> las comprobaciones E2E se ejecutan con Chromium y una página simulada de AEOLCLOUD, sin red. No equivalen a una validación completa de todas las situaciones posibles de la plataforma real. La captura de imágenes, por ejemplo, aún está pendiente de verificar en AEOLCLOUD real.</p>
+ <h3 class="sub">Estado y aprendizajes</h3>
+ <div class="tq-two">
+  <div class="card"><h3>Estado actual</h3><p>Versión 0.1.0. Se usa mediante instalación local en modo desarrollador; <strong>no está publicada en Chrome Web Store</strong>. En su primer uso real la captura de aciertos y fallos funcionó.</p></div>
+  <div class="card"><h3>Qué he aprendido</h3><ul class="tq-list"><li>El primer uso real destapó un fallo (intentos perdidos al pasar rápido de pregunta) que las pruebas simuladas no mostraban.</li><li>A separar el código de cada plataforma del resto para poder probarlo.</li><li>A no dar por bueno lo dudoso y a documentar las limitaciones.</li></ul></div>
+ </div>
+ <p class="tq-back"><a class="btn primary" href="proyectos.html#teoriq">← Volver a proyectos</a> <a class="btn ghost" href="contacto.html">Contacto</a></p>
+</div></section>
+
+</main>
+<footer id="site-footer"></footer>
+</body>
+</html>
