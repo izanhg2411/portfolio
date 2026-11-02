@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Outfit AI · Proyectos · Izan Hernández</title>
-<meta name="description" content="Outfit AI: extensión de Chrome que propone outfits según estilo, tallas y presupuesto. Proyecto de Izan Hernández.">
+<meta name="description" content="Outfit AI: prototipo de extensión de Chrome (Manifest V3, JavaScript) que combina los productos de la tienda que estás viendo en outfits que nunca superan tu presupuesto. Se ejecuta en local, sin servidor ni modelos de IA. Proyecto de Izan Hernández.">
 
 <meta name="theme-color" content="#071226">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -12,9 +12,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <meta property="og:type" content="website"><meta property="og:locale" content="es_ES">
-<meta property="og:title" content="Outfit AI · Izan Hernández"><meta property="og:description" content="Outfit AI: extensión de Chrome que propone outfits según estilo, tallas y presupuesto.">
+<meta property="og:title" content="Outfit AI · Izan Hernández"><meta property="og:description" content="Prototipo de extensión de Chrome que propone outfits con los productos de la tienda que estás viendo, dentro de tu presupuesto.">
 <meta property="og:url" content="https://izanhg2411.github.io/portfolio/outfit-ai.html">
-<meta property="og:image" content="https://izanhg2411.github.io/portfolio/img/proyectos/outfit-ai.webp">
+<meta property="og:image" content="https://izanhg2411.github.io/portfolio/img/proyectos/outfit-ai/outfit-resumen.webp">
 <link rel="stylesheet" href="css/style.css">
 <script src="js/main.js" defer></script>
 </head>
@@ -24,13 +24,14 @@
 <noscript><p class="wrap"><a href="index.html">Inicio</a> · <a href="proyectos.html">Proyectos</a> · <a href="contacto.html">Contacto</a></p></noscript>
 <main id="contenido">
 
+<!-- A. Hero -->
 <div class="wrap">
  <div class="tq-hero">
   <div>
-   <span class="eyebrow">Extensión de Chrome · Moda online</span>
+   <span class="eyebrow">Extensión de Chrome · Moda y presupuesto</span>
    <h1><em>Outfit AI</em></h1>
-   <p class="hero-sub">Extensión de Chrome que, mientras navegas por una tienda de ropa online, combina los productos que detecta para proponerte outfits según tu estilo, tus tallas y tu presupuesto. Pensada para tiendas como Bershka.</p>
-   <div class="chips" aria-label="Tecnologías"><span>Extensión de Chrome</span><span>Manifest V3</span><span>JavaScript</span><span>Side Panel API</span><span>Node test runner</span></div>
+   <p class="hero-sub">Prototipo que combina los productos de la tienda que estás viendo en outfits que respetan tu presupuesto. Se ejecuta en el navegador, sin servidor y sin modelos de IA: la selección es un algoritmo propio.</p>
+   <div class="chips" aria-label="Tecnologías"><span>Manifest V3</span><span>JavaScript</span><span>Side Panel API</span><span>chrome.scripting</span><span>chrome.storage</span><span>Node test runner</span><span>Playwright</span></div>
    <div class="cta">
     <a class="btn primary" href="proyectos.html#outfit">← Volver a proyectos</a>
     <a class="btn ghost" data-pj="outfitCode" href="#">Código en GitHub</a>
@@ -38,45 +39,135 @@
   </div>
   <figure class="tq-shot">
    <div class="pj-bar" aria-hidden="true"><i></i><i></i><i></i></div>
-   <img src="img/proyectos/outfit-ai.webp" alt="Captura de Outfit AI con el formulario de preferencias y el outfit generado" width="1600" height="1000" decoding="async">
+   <img src="img/proyectos/outfit-ai/outfit-resumen.webp" alt="Tres pantallas de Outfit AI: formulario de preferencias con valores de demostración y dos outfits generados con productos de una tienda real" width="1600" height="1000" decoding="async">
   </figure>
  </div>
 </div>
 
+<!-- B. Problema -->
 <section class="tq-sec"><div class="wrap">
- <h2>Finalidad y estado</h2>
- <p class="lead">Qué problema aborda este proyecto y en qué punto de desarrollo se encuentra.</p>
+ <h2>El problema</h2>
+ <p class="lead">Montar un conjunto en una tienda online obliga a ir de sección en sección, apuntando precios para no pasarse del presupuesto.</p>
  <div class="tq-two">
-  <div class="card"><h3>Finalidad</h3><p>Ahorrar tiempo al combinar prendas sin pasarte del presupuesto.</p></div>
-  <div class="card"><h3>Estado</h3><p>Prototipo v0.5.1 · compatibilidad con cada tienda sin verificar</p></div>
+  <div class="card"><h3>La necesidad</h3><p>Una camiseta en una página, un pantalón en otra, unas zapatillas en una tercera, y la suma hecha a mano. Además hay que comprobar tallas y que los colores combinen.</p></div>
+  <div class="card"><h3>Qué propone Outfit AI</h3><p>Leer los productos que la propia página ya muestra y proponer combinaciones completas con el total, lo que sobra del presupuesto y el estado de la talla de cada prenda.</p></div>
  </div>
 </div></section>
 
+<!-- C. Solución -->
+<section class="tq-sec"><div class="wrap">
+ <h2>La solución</h2>
+ <p class="lead">El recorrido completo. La extensión no se ejecuta en ninguna web hasta que se pulsa su icono.</p>
+ <ol class="tq-steps">
+  <li><strong>Abres una tienda</strong><span>Un listado de productos o una ficha, desplazándote hasta el final para que la tienda cargue los productos.</span></li>
+  <li><strong>Pulsas el icono</strong><span>OutfitAI se abre en el panel lateral de Chrome y no se cierra al hacer clic en la página.</span></li>
+  <li><strong>Indicas tus preferencias</strong><span>Estilo, presupuesto, tallas, colores y prendas deseadas. Se guardan solas.</span></li>
+  <li><strong>Lee los productos</strong><span>Los de la página y, con tu permiso, los de otras secciones de la misma tienda.</span></li>
+  <li><strong>Genera un outfit</strong><span>Una prenda por categoría, sin superar el presupuesto, con el total y el dinero restante.</span></li>
+  <li><strong>Lo revisas</strong><span>En lista o en vista previa. Puedes pedir otro outfit, o probar el añadido a la cesta, que es experimental.</span></li>
+ </ol>
+</div></section>
+
+<!-- D. Funcionalidades -->
 <section class="tq-sec"><div class="wrap">
  <h2>Funcionalidades</h2>
- <p class="lead">Lo que hace la extensión hoy.</p>
+ <p class="lead">Lo que hace el prototipo y lo que todavía no está comprobado.</p>
  <div class="tq-feats">
-  <div class="card"><span class="num">01</span><p>Una prenda por categoría, con precio, talla y enlace; muestra el total y el dinero que te sobra.</p></div>
-  <div class="card"><span class="num">02</span><p>El total nunca supera el presupuesto (comprobado con pruebas automáticas).</p></div>
-  <div class="card"><span class="num">03</span><p>Recoge otras secciones de la tienda con tu permiso y vista previa del outfit.</p></div>
-  <div class="card"><span class="num">04</span><p>Ayuda a añadir las prendas a la cesta.</p></div>
-  <div class="card"><span class="num">05</span><p>Todo se calcula en local: sin servidor ni claves de API.</p></div>
+  <div class="card"><span class="num">01</span><h3>Lectura de productos</h3><p>Combina datos estructurados (JSON-LD) y tarjetas visibles. Solo precios en euros: descarta otras monedas, precios tachados o ambiguos y lo cuenta.</p></div>
+  <div class="card"><span class="num">02</span><h3>Preferencias</h3><p>Nueve estilos, presupuesto, talla de zapatillas y de ropa, colores y seis categorías de prenda. La altura y el peso se guardan, pero no se usan para deducir tallas.</p></div>
+  <div class="card"><span class="num">03</span><h3>Generador con presupuesto</h3><p>Búsqueda con poda que nunca supera el presupuesto, con el total y el restante siempre cuadrados y sin repetir categorías. Puntúa estilo, colores y tallas disponibles.</p></div>
+  <div class="card"><span class="num">04</span><h3>Recogida de secciones</h3><p>Si faltan prendas, abre hasta seis secciones de la tienda en pestañas en segundo plano, lee los precios y las cierra. Pide permiso por tienda.</p></div>
+  <div class="card"><span class="num">05</span><h3>Vista previa del outfit</h3><p>Compone las fotos de la tienda como se llevan puestas, con precio y total. Es una composición, no una prueba virtual sobre el cuerpo.</p></div>
+  <div class="card"><span class="num">06</span><h3>Tallas sin inventar</h3><p>Muestra si la ficha lista tu talla o dice «Talla por comprobar». Si la ficha indica que no la tiene, esa prenda se excluye. No elige ninguna talla por ti.</p></div>
+  <div class="card"><span class="num">07</span><h3>Productos guardados</h3><p>Conserva hasta 400 productos vistos durante 7 días para combinar lo de varias secciones. Se pueden vaciar y cada prenda muestra cuándo se vio su precio.</p></div>
+  <div class="card"><span class="num">08</span><h3>Sesión persistente</h3><p>El outfit, la vista elegida y el estado de la cesta se restauran al reabrir el panel durante 24 horas.</p></div>
+  <div class="card"><span class="num">09</span><h3>Añadir a la cesta (experimental)</h3><p>Abre cada ficha, elige tu talla, pulsa «Añadir» y comprueba la cesta real. Muestra el progreso, permite detenerlo y no cierra las fichas que no pudo confirmar.</p></div>
+ </div>
+ <div class="tq-note"><strong>Sin verificar en tiendas reales:</strong> la función de añadir a la cesta solo se ha probado contra una tienda simulada en local. No está verificada en Bershka real ni en ninguna otra tienda.</div>
+</div></section>
+
+<!-- Capturas -->
+<section class="tq-sec"><div class="wrap">
+ <h2>Capturas reales</h2>
+ <p class="lead">Las capturas son una demostración del prototipo y no acreditan una integración con ninguna tienda. El formulario se ha capturado con valores ficticios de demostración y una tienda simulada en local.</p>
+ <div class="tq-gallery">
+  <figure><img src="img/proyectos/outfit-ai/formulario-demo.webp" alt="Formulario de preferencias de Outfit AI con valores de demostración y el aviso de detección de productos" width="758" height="1000" loading="lazy" decoding="async"><figcaption><strong>Preferencias (valores ficticios)</strong>Capturada con la extensión real sobre una tienda simulada en local. Los datos son de ejemplo.</figcaption></figure>
+  <figure><img src="img/proyectos/outfit-ai/panel-bershka.webp" alt="Panel con un outfit de tres prendas en vista previa a partir de 16 productos detectados en la página" width="420" height="932" loading="lazy" decoding="async"><figcaption><strong>Outfit de demostración</strong>16 productos con precio detectados en la página y un outfit de tres prendas.</figcaption></figure>
+  <figure><img src="img/proyectos/outfit-ai/vista-previa-bershka.webp" alt="Vista previa del outfit con total, presupuesto inicial, dinero restante y aviso de prendas que faltan" width="420" height="846" loading="lazy" decoding="async"><figcaption><strong>Presupuesto y avisos</strong>Total 89,97 € sobre 200 €, con el aviso de que faltan zapatillas y de confirmar tallas y precios en la tienda.</figcaption></figure>
+ </div>
+ <div class="tq-gallery one sm">
+  <figure><img src="img/proyectos/outfit-ai/productos-guardados.webp" alt="Lista de productos disponibles con nombre, categoría y precio, y el aviso de que todo se procesa en el navegador" width="406" height="221" loading="lazy" decoding="async"><figcaption><strong>Productos guardados</strong>La lista de productos detectados, con su categoría, y el aviso de que no se envía ningún dato a servidores externos.</figcaption></figure>
+ </div>
+ <p class="tq-pending"><strong>Capturas pendientes de añadir:</strong> el proceso de añadir a la cesta (progreso y detalle técnico) y el permiso por tienda. No se muestran imágenes simuladas de ese flujo.</p>
+</div></section>
+
+<!-- E. Arquitectura -->
+<section class="tq-sec"><div class="wrap">
+ <h2>Arquitectura y tecnologías</h2>
+ <p class="lead">Sin dependencias de ejecución. La lógica de cálculo está separada de la interfaz para poder probarla desde Node.</p>
+ <ol class="tq-flow" aria-label="Flujo de la extensión">
+  <li><b>Icono de la extensión</b><span>Abre el panel lateral</span></li>
+  <li class="core"><b>Panel lateral</b><span>Preferencias, estado y resultados</span></li>
+  <li class="core"><b>Lector de la página</b><span>Se inyecta solo en la pestaña activa y bajo demanda</span></li>
+  <li class="core"><b>Núcleo de cálculo</b><span>Precios, categorías y generador de outfits</span></li>
+  <li><b>chrome.storage.local</b><span>Preferencias, productos y sesión</span></li>
+ </ol>
+ <ul class="tq-arch">
+  <li><b>background.js</b><small>Configura el panel lateral para que se abra al pulsar el icono.</small></li>
+  <li><b>popup.html, popup.css y popup.js</b><small>Interfaz del panel y orquestación: permisos, recogida de secciones, vista previa, sesión y flujo de la cesta.</small></li>
+  <li><b>content.js</b><small>Extractor inyectado con <code>chrome.scripting</code>. Trata la página como contenido no confiable: solo usa <code>textContent</code>, <code>JSON.parse</code> y URL validadas, nunca HTML. Su punto de extensión para adaptadores por tienda está vacío a propósito.</small></li>
+  <li><b>outfit-core.js</b><small>Módulo sin dependencias compartido por la extensión y las pruebas: lectura de precios, categorías, colores, validaciones y generador.</small></li>
+  <li><b>test/</b><small>Cuatro archivos: núcleo, extractor, flujo del panel y Chromium real contra una tienda simulada.</small></li>
+ </ul>
+ <div class="chips" aria-label="Tecnologías"><span>Chrome Extensions Manifest V3</span><span>JavaScript</span><span>Side Panel API</span><span>chrome.scripting</span><span>chrome.permissions</span><span>jsdom (pruebas)</span><span>Playwright (pruebas)</span></div>
+</div></section>
+
+<!-- F. Privacidad -->
+<section class="tq-sec"><div class="wrap">
+ <h2>Privacidad y permisos</h2>
+ <p class="lead">La extensión no hace peticiones de red propias ni usa claves, cuentas o servicios de terceros.</p>
+ <div class="tq-two">
+  <div class="card"><h3>Qué se guarda en tu navegador</h3><ul class="tq-list"><li>Preferencias: estilo, presupuesto, altura, peso, tallas, colores y prendas</li><li>Productos detectados: hasta 400 durante 7 días</li><li>Sesión del panel: outfit y estado durante 24 horas</li></ul><p>Todo en <code>chrome.storage.local</code>, con opción de vaciar los productos guardados.</p></div>
+  <div class="card"><h3>Qué hace con las tiendas</h3><p>Lee la pestaña activa solo cuando se abre la extensión. Para recoger secciones o añadir a la cesta abre páginas de la tienda en pestañas, como una navegación normal: la tienda registra esas visitas.</p><p>Durante el añadido a la cesta instala en la ficha un observador de solo lectura de las peticiones: anota método, ruta sin parámetros y estado, sin leer cuerpos, cabeceras ni cookies.</p></div>
+ </div>
+ <div class="tq-note"><strong>Permisos:</strong> <code>storage</code>, <code>activeTab</code>, <code>scripting</code> y <code>sidePanel</code>. No hay permisos de sitio obligatorios ni content scripts permanentes: el acceso a cada tienda es opcional, se pide por dominio y, si se rechaza, la extensión sigue funcionando con la página actual.</div>
+</div></section>
+
+<!-- G. Retos -->
+<section class="tq-sec"><div class="wrap">
+ <h2>Retos técnicos</h2>
+ <p class="lead">Varios de estos problemas aparecieron al usar la extensión en una tienda real y están documentados en el historial de cambios del proyecto.</p>
+ <div class="tq-feats">
+  <div class="card"><h3>Leer tiendas sin conocer su estructura</h3><p>Un modo genérico combina JSON-LD y tarjetas visibles. No hay adaptadores por tienda porque ninguna estructura se ha verificado, y la extensión no depende de selectores inventados.</p></div>
+  <div class="card"><h3>Garantizar el presupuesto</h3><p>La búsqueda descarta cualquier combinación que, con la opción más barata del resto, ya no cabría. Una prueba aleatoria con 300 catálogos comprueba que el total nunca supera el presupuesto y que las cuentas cuadran.</p></div>
+  <div class="card"><h3>Precios y nombres poco fiables</h3><p>Formatos como <code>1.299,00 €</code>, precios partidos en varios elementos y precios tachados. En Bershka, el texto alternativo de una foto describía un look completo, así que el nombre se toma del enlace o de la URL.</p></div>
+  <div class="card"><h3>Chrome oculta la URL sin permiso</h3><p>Sin permiso sobre la pestaña, <code>tab.url</code> llega vacía y el panel decía que no era una tienda estando en Bershka. Ahora distingue ese caso, lo explica y ofrece pedir el permiso de la tienda.</p></div>
+  <div class="card"><h3>Automatizar la cesta sin dar falsos positivos</h3><p>Se reescribió porque la versión anterior cerraba fichas siempre, confirmaba por cambios de texto y podía añadir duplicados. Ahora espera a la respuesta de la tienda, solo confirma con una petición aceptada y no cierra fichas hasta comprobar la cesta real.</p></div>
+  <div class="card"><h3>Panel lateral en lugar de popup</h3><p>Un popup se cierra al perder el foco, y con él el proceso en curso. El panel lateral sigue abierto y la sesión se restaura al volver.</p></div>
  </div>
 </div></section>
 
+<!-- H. Resultados -->
 <section class="tq-sec"><div class="wrap">
- <h2>Captura real</h2>
- <p class="lead">Pantalla de la extensión en funcionamiento.</p>
- <div class="tq-gallery one">
-  <figure><img src="img/proyectos/outfit-ai.webp" alt="Outfit AI con el formulario de preferencias y el outfit generado" width="1600" height="1000" loading="lazy" decoding="async"><figcaption><strong>Outfit AI</strong>Formulario de preferencias (estilo, tallas, presupuesto) y outfit generado.</figcaption></figure>
+ <h2>Resultados y pruebas</h2>
+ <p class="lead">Última ejecución de <code>npm test</code>: 33 pruebas.</p>
+ <div class="tq-stats">
+  <div class="tq-stat"><b>22</b><span>pruebas superadas</span></div>
+  <div class="tq-stat"><b>0</b><span>fallos</span></div>
+  <div class="tq-stat"><b>11</b><span>omitidas (falta jsdom)</span></div>
+  <div class="tq-stat"><b>3</b><span>en Chromium real</span></div>
  </div>
- <p class="tq-pending"><strong>Capturas pendientes de añadir:</strong> el resto de pantallas de la extensión. No se muestran imágenes simuladas.</p>
-</div></section>
-
-<section class="tq-sec"><div class="wrap">
- <h2>Tecnologías</h2>
- <p class="lead">Lo que he utilizado para construirla.</p>
- <div class="chips" aria-label="Tecnologías"><span>Extensión de Chrome</span><span>Manifest V3</span><span>JavaScript</span><span>Side Panel API</span><span>Node test runner</span></div>
+ <div class="tq-two">
+  <div class="card"><h3>Pruebas automatizadas superadas</h3><ul class="tq-list"><li>19 pruebas unitarias del núcleo: precios, categorías, tallas, presupuesto, generador y clasificación de resultados de la cesta</li><li>3 pruebas en Chromium real con la extensión cargada, contra una tienda simulada en local</li></ul></div>
+  <div class="card"><h3>No ejecutadas en la última pasada</h3><ul class="tq-list"><li>11 pruebas de extractor y de flujo del panel, que requieren jsdom y se omiten si no está instalado</li></ul></div>
+ </div>
+ <div class="tq-note"><strong>Sin verificar en tiendas reales:</strong> la compatibilidad con cada tienda, el añadido a la cesta, la lectura de la cesta real y los avisos de permiso de Chrome. Las ocho tiendas que reconoce por nombre, entre ellas Bershka, usan el modo genérico sin adaptador verificado. Que las pruebas pasen contra la tienda simulada no demuestra nada sobre una tienda real.</div>
+ <h3 class="sub">Estado y límites</h3>
+ <div class="tq-two">
+  <div class="card"><h3>Estado actual</h3><p>Prototipo v0.5.1, en modo desarrollador. <strong>No está publicado en Chrome Web Store.</strong> Las capturas son una demostración: muestran la lectura del listado y el outfit, pero no equivalen a una verificación ni a una integración con ninguna tienda.</p></div>
+  <div class="card"><h3>Limitaciones conocidas</h3><ul class="tq-list"><li>Solo precios en euros</li><li>La categoría se deduce del nombre o la URL</li><li>La detección de tallas agotadas es heurística</li><li>Si la tienda carga precios con scripts que no aparecen en el DOM, no se detecta nada</li></ul></div>
+ </div>
+ <p class="tq-note" style="margin-top:1.1rem"><strong>Posibles mejoras (no implementadas):</strong> un adaptador verificado para Bershka, probar el añadido a la cesta en una ficha real y añadir iconos propios.</p>
  <p class="tq-back"><a class="btn primary" href="proyectos.html#outfit">← Volver a proyectos</a> <a class="btn ghost" href="contacto.html">Contacto</a></p>
 </div></section>
 
