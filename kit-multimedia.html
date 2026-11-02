@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kit multimedia · Proyectos · Izan Hernández</title>
-<meta name="description" content="Kit multimedia: extensión de Chrome con herramientas para imágenes, audio y vídeo. Proyecto de Izan Hernández.">
+<meta name="description" content="Kit multimedia: extensión de Chrome (Manifest V3, JavaScript) que iguala imágenes, extrae audio a MP3, crea GIF, saca fotogramas, comprime vídeo y descarga archivos por enlace, todo procesado en el navegador. Proyecto de Izan Hernández.">
 
 <meta name="theme-color" content="#071226">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -12,9 +12,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <meta property="og:type" content="website"><meta property="og:locale" content="es_ES">
-<meta property="og:title" content="Kit multimedia · Izan Hernández"><meta property="og:description" content="Kit multimedia: extensión de Chrome con herramientas para imágenes, audio y vídeo.">
+<meta property="og:title" content="Kit multimedia · Izan Hernández"><meta property="og:description" content="Extensión de Chrome con herramientas para imágenes, audio y vídeo que trabaja en local, sin subir tus archivos.">
 <meta property="og:url" content="https://izanhg2411.github.io/portfolio/kit-multimedia.html">
-<meta property="og:image" content="https://izanhg2411.github.io/portfolio/img/proyectos/kit-multimedia.webp">
+<meta property="og:image" content="https://izanhg2411.github.io/portfolio/img/proyectos/kit-multimedia/kit-resumen.webp">
 <link rel="stylesheet" href="css/style.css">
 <script src="js/main.js" defer></script>
 </head>
@@ -24,13 +24,14 @@
 <noscript><p class="wrap"><a href="index.html">Inicio</a> · <a href="proyectos.html">Proyectos</a> · <a href="contacto.html">Contacto</a></p></noscript>
 <main id="contenido">
 
+<!-- A. Hero -->
 <div class="wrap">
  <div class="tq-hero">
   <div>
    <span class="eyebrow">Extensión de Chrome · Multimedia</span>
    <h1><em>Kit multimedia</em></h1>
-   <p class="hero-sub">Extensión de Chrome que reúne en un solo sitio herramientas para imágenes, audio y vídeo, sin instalar programas aparte.</p>
-   <div class="chips" aria-label="Tecnologías"><span>Extensión de Chrome</span><span>Manifest V3</span><span>JavaScript</span><span>lamejs (MP3)</span><span>gifenc (GIF)</span></div>
+   <p class="hero-sub">Extensión que reúne en una sola pestaña las tareas habituales con imágenes, audio y vídeo: igualar medidas, bajar el peso, extraer el audio, hacer un GIF o descargar un archivo por enlace. Todo se procesa dentro del navegador.</p>
+   <div class="chips" aria-label="Tecnologías"><span>Manifest V3</span><span>JavaScript</span><span>Canvas API</span><span>Web Audio API</span><span>MediaRecorder</span><span>lamejs (MP3)</span><span>gifenc (GIF)</span></div>
    <div class="cta">
     <a class="btn primary" href="proyectos.html#kit">← Volver a proyectos</a>
     <a class="btn ghost" data-pj="kitCode" href="#">Código en GitHub</a>
@@ -38,44 +39,134 @@
   </div>
   <figure class="tq-shot">
    <div class="pj-bar" aria-hidden="true"><i></i><i></i><i></i></div>
-   <img src="img/proyectos/kit-multimedia.webp" alt="Captura de la extensión Kit multimedia con la pestaña de imágenes" width="1600" height="1000" decoding="async">
+   <img src="img/proyectos/kit-multimedia/kit-resumen.webp" alt="Tres pantallas reales de Kit multimedia: ajustes de salida de imágenes, comparador antes y después, y la pestaña Audio y vídeo" width="1600" height="1000" decoding="async">
   </figure>
  </div>
 </div>
 
+<!-- B. Problema -->
 <section class="tq-sec"><div class="wrap">
- <h2>Finalidad y estado</h2>
- <p class="lead">Qué problema aborda este proyecto y en qué punto de desarrollo se encuentra.</p>
+ <h2>El problema</h2>
+ <p class="lead">Preparar archivos multimedia suele significar saltar entre programas de escritorio y webs de conversión, a menudo subiendo los archivos a un servidor ajeno.</p>
  <div class="tq-two">
-  <div class="card"><h3>Finalidad</h3><p>Convertir, comprimir y preparar archivos multimedia de forma rápida desde el navegador.</p></div>
-  <div class="card"><h3>Estado</h3><p>Versión 2.0.0 · uso en modo desarrollador</p></div>
+  <div class="card"><h3>La necesidad</h3><p>Tareas pequeñas y repetidas: dejar una tanda de imágenes exactamente del mismo tamaño y por debajo de un peso concreto, sacar el audio de un vídeo, convertir un clip en GIF o guardar un archivo que está en una web.</p></div>
+  <div class="card"><h3>Qué propone Kit multimedia</h3><p>Reunir esas tareas en una única interfaz dentro de Chrome y resolverlas en local, con los codificadores y las API que ya ofrece el navegador, sin cuentas ni servidores intermedios.</p></div>
  </div>
 </div></section>
 
+<!-- C. Solución -->
+<section class="tq-sec"><div class="wrap">
+ <h2>La solución</h2>
+ <p class="lead">Así se usa, de principio a fin. La extensión no corre en segundo plano: solo actúa cuando se abre.</p>
+ <ol class="tq-steps">
+  <li><strong>Pulsas el icono</strong><span>El Kit se abre en una pestaña nueva y recuerda desde qué web lo abriste.</span></li>
+  <li><strong>Eliges la herramienta</strong><span>Imágenes, Audio y vídeo, o Desde enlaces.</span></li>
+  <li><strong>Añades archivos</strong><span>Arrastrándolos, pegando con Ctrl+V, eligiéndolos, trayéndolos de la web de origen o desde enlaces.</span></li>
+  <li><strong>Ajustas el resultado</strong><span>Medidas, formato, calidad, peso objetivo, tramo de vídeo, frecuencia de audio…</span></li>
+  <li><strong>Se procesa en el navegador</strong><span>Con canvas, Web Audio, MediaRecorder y dos codificadores en JavaScript.</span></li>
+  <li><strong>Revisas y descargas</strong><span>Comparas antes y después y descargas el archivo, o varios en un ZIP.</span></li>
+ </ol>
+</div></section>
+
+<!-- D. Funcionalidades -->
 <section class="tq-sec"><div class="wrap">
  <h2>Funcionalidades</h2>
- <p class="lead">Lo que hace la extensión hoy.</p>
+ <p class="lead">Tres pestañas: Imágenes, Audio y vídeo, y Desde enlaces. Los resultados se descargan sueltos o en un ZIP.</p>
  <div class="tq-feats">
-  <div class="card"><span class="num">01</span><h3>Imágenes</h3><p>Igualar medidas (recortar, encajar o estirar), elegir JPEG, PNG o WebP, ajustar calidad y peso objetivo en KB.</p></div>
-  <div class="card"><span class="num">02</span><h3>Audio y vídeo</h3><p>Extraer audio a MP3 o WAV, vídeo a GIF animado, sacar fotogramas y comprimir o recortar vídeo.</p></div>
-  <div class="card"><span class="num">03</span><h3>Desde enlaces</h3><p>Descargar archivos por URL directa y extraer su audio en MP3.</p></div>
-  <div class="card"><span class="num">04</span><p>Descarga de los resultados en un ZIP.</p></div>
+  <div class="card"><span class="num">01</span><h3>Imágenes a medida exacta</h3><p>Mismo ancho y alto para todo el lote. Si la proporción no coincide: recortar para llenar, encajar con bandas de color o estirar. Con transparencia opcional en PNG y WebP.</p></div>
+  <div class="card"><span class="num">02</span><h3>Peso objetivo en KB</h3><p>En JPEG y WebP, ajusta la calidad de cada imagen para acercarse al peso indicado. Si no llega, lo señala en esa imagen.</p></div>
+  <div class="card"><span class="num">03</span><h3>Nitidez y avisos</h3><p>Aplica un enfoque suave tras redimensionar y avisa cuando una imagen se amplía más de ×1,5, porque se verá algo blanda.</p></div>
+  <div class="card"><span class="num">04</span><h3>Comparador antes y después</h3><p>Control deslizante o vista lado a lado, zoom 1:1 y paso entre imágenes, con el ahorro de peso de cada una.</p></div>
+  <div class="card"><span class="num">05</span><h3>Audio a MP3 o WAV</h3><p>Desde vídeos y audios que Chrome pueda reproducir. Frecuencia de 44,1 o 48 kHz, opción mono y MP3 de 128 a 320 kbps.</p></div>
+  <div class="card"><span class="num">06</span><h3>Vídeo a GIF</h3><p>Indicas inicio, duración, ancho y fotogramas por segundo. Limita el resultado a 400 fotogramas para no bloquear el navegador.</p></div>
+  <div class="card"><span class="num">07</span><h3>Fotogramas</h3><p>Un fotograma en un instante concreto, o uno cada cierto número de segundos, en JPEG, PNG o WebP (hasta 300 imágenes).</p></div>
+  <div class="card"><span class="num">08</span><h3>Comprimir y recortar vídeo</h3><p>Salida en MP4 o WebM, con ancho, tasa de bits y tramo a elegir, y opción de quitar el sonido.</p></div>
+  <div class="card"><span class="num">09</span><h3>Desde enlaces</h3><p>Descarga enlaces directos a archivos, extrae su audio en MP3 o los carga en las otras pestañas. También busca vídeos y audios en la web de origen.</p></div>
  </div>
 </div></section>
 
+<!-- Capturas -->
 <section class="tq-sec"><div class="wrap">
- <h2>Captura real</h2>
- <p class="lead">Pantalla de la extensión en funcionamiento.</p>
+ <h2>Capturas reales</h2>
+ <p class="lead">Pantallas de la extensión con un lote de tres imágenes reales: se llevan a 1200×800 en WebP con un peso objetivo de 250 KB.</p>
+ <div class="tq-gallery">
+  <figure><img src="img/proyectos/kit-multimedia/ajustes-imagenes.webp" alt="Panel de ajustes de la pestaña Imágenes: ancho y alto, recorte, color de relleno, formato WebP, calidad, peso objetivo y nitidez" width="314" height="846" loading="lazy" decoding="async"><figcaption><strong>Ajustes de salida</strong>Medidas, ajuste de proporción, formato, calidad, peso objetivo por imagen y nitidez.</figcaption></figure>
+  <figure><img src="img/proyectos/kit-multimedia/imagenes-resultado.webp" alt="Tres imágenes procesadas a 1200×800 con su peso final, calidad aplicada y aviso de ampliación" width="629" height="391" loading="lazy" decoding="async"><figcaption><strong>Resultado del lote</strong>Tres imágenes de 186 a 293 KB pasan a 59–70 KB, con el aviso de que se han ampliado ×2,0 a ×2,2.</figcaption></figure>
+  <figure><img src="img/proyectos/kit-multimedia/acciones-audio-video.webp" alt="Desplegable de acciones de Audio y vídeo: extraer audio a MP3 o WAV, vídeo a GIF, a fotogramas y comprimir o recortar" width="347" height="399" loading="lazy" decoding="async"><figcaption><strong>Acciones de Audio y vídeo</strong>Las cinco operaciones disponibles sobre vídeos y audios.</figcaption></figure>
+ </div>
  <div class="tq-gallery one">
-  <figure><img src="img/proyectos/kit-multimedia.webp" alt="Pestaña Imágenes de Kit multimedia con las medidas de salida, la calidad y el peso objetivo" width="1600" height="1000" loading="lazy" decoding="async"><figcaption><strong>Kit multimedia</strong>Pestaña Imágenes: medidas de salida, formato, calidad, peso objetivo por imagen y nitidez.</figcaption></figure>
+  <figure><img src="img/proyectos/kit-multimedia/comparador.webp" alt="Comparador antes y después con un control deslizante sobre una imagen procesada" width="1024" height="582" loading="lazy" decoding="async"><figcaption><strong>Comparador antes y después</strong>Control deslizante sobre una de las imágenes del lote (calidad 98, un 68 % menos de peso).</figcaption></figure>
  </div>
- <p class="tq-pending"><strong>Capturas pendientes de añadir:</strong> el resto de pantallas de la extensión. No se muestran imágenes simuladas.</p>
+ <div class="tq-gallery one">
+  <figure><img src="img/proyectos/kit-multimedia/audio-video.webp" alt="Pestaña Audio y vídeo con la acción Extraer audio a MP3, frecuencia de muestreo y calidad" width="1919" height="497" loading="lazy" decoding="async"><figcaption><strong>Audio y vídeo</strong>Extracción de audio a MP3: frecuencia de muestreo, mono y calidad.</figcaption></figure>
+ </div>
+ <p class="tq-pending"><strong>Capturas pendientes de añadir:</strong> la pestaña Desde enlaces y la pestaña Imágenes con las miniaturas cargadas. No se muestran imágenes simuladas.</p>
 </div></section>
 
+<!-- E. Arquitectura -->
 <section class="tq-sec"><div class="wrap">
- <h2>Tecnologías</h2>
- <p class="lead">Lo que he utilizado para construirla.</p>
- <div class="chips" aria-label="Tecnologías"><span>Extensión de Chrome</span><span>Manifest V3</span><span>JavaScript</span><span>lamejs (MP3)</span><span>gifenc (GIF)</span></div>
+ <h2>Arquitectura y tecnologías</h2>
+ <p class="lead">Una página de extensión con su interfaz y un service worker mínimo. No hay content scripts permanentes ni dependencias que instalar: las dos librerías de codificación van incluidas en el propio paquete.</p>
+ <ol class="tq-flow" aria-label="Flujo de la extensión">
+  <li><b>Icono de la extensión</b><span>Acción del navegador</span></li>
+  <li class="core"><b>Service worker</b><span>Abre el Kit con el id de la pestaña de origen</span></li>
+  <li class="core"><b>Interfaz del Kit</b><span>Tres pestañas en una página de extensión</span></li>
+  <li class="core"><b>Procesado local</b><span>Canvas · Web Audio · MediaRecorder · lamejs · gifenc</span></li>
+  <li class="core"><b>Descarga</b><span>Archivo suelto o ZIP generado en el navegador</span></li>
+ </ol>
+ <ul class="tq-arch">
+  <li><b>background.js</b><small>Service worker de una sola función: al pulsar el icono abre <code>index.html</code> en una pestaña nueva, pasando el id de la pestaña desde la que se abrió.</small></li>
+  <li><b>app.js e index.html</b><small>Interfaz y lógica de la pestaña Imágenes: cola de archivos, redimensionado con canvas, peso objetivo, enfoque, comparador y descarga.</small></li>
+  <li><b>media.js y codecs.js</b><small>Pestaña Audio y vídeo: decodificación con Web Audio, codificación a WAV y MP3, GIF con gifenc, fotogramas y recodificado de vídeo.</small></li>
+  <li><b>url.js</b><small>Pestaña Desde enlaces: validación de URLs, descarga con progreso y búsqueda de medios en la web de origen.</small></li>
+  <li><b>zip.js</b><small>Generador de ZIP propio (sin compresión, con CRC32 y nombres UTF-8) para no depender de una librería.</small></li>
+  <li><b>vendor/</b><small>lamejs y gifenc incluidos en local: la extensión funciona sin cargar código externo.</small></li>
+ </ul>
+ <div class="chips" aria-label="Tecnologías"><span>Chrome Extensions Manifest V3</span><span>JavaScript</span><span>HTML5 y CSS3</span><span>Canvas API</span><span>Web Audio API</span><span>MediaRecorder</span><span>chrome.scripting</span><span>lamejs</span><span>gifenc</span></div>
+</div></section>
+
+<!-- F. Privacidad -->
+<section class="tq-sec"><div class="wrap">
+ <h2>Privacidad</h2>
+ <p class="lead">Los archivos se procesan en el navegador. Estas son las únicas situaciones en las que la extensión hace peticiones de red.</p>
+ <div class="tq-two">
+  <div class="card"><h3>Qué garantiza el diseño</h3><ul class="tq-list"><li>Imágenes, audio y vídeo no se suben a ningún servidor</li><li>No necesita cuenta ni tiene servidores propios</li><li>No incorpora analítica</li><li>No guarda datos: no usa ninguna API de almacenamiento y, al cerrar la pestaña, la lista de archivos desaparece</li><li>No incluye funciones de IA</li></ul></div>
+  <div class="card"><h3>Cuándo hay red</h3><p>Solo en dos casos, y siempre a petición del usuario: al cargar las imágenes de la web de origen y al descargar los enlaces que se pegan en «Desde enlaces». En ambos casos la petición va al sitio donde está el archivo, como haría el propio navegador.</p><p>La descarga por enlace envía las cookies de ese sitio, de modo que puede acceder a lo que tu sesión ya puede ver.</p></div>
+ </div>
+ <div class="tq-note"><strong>Permisos:</strong> <code>activeTab</code> y <code>scripting</code> para leer la pestaña de origen solo cuando se pulsa el botón correspondiente, y acceso a todas las URL (<code>&lt;all_urls&gt;</code>) para que la página de la extensión pueda descargar archivos de cualquier dominio sin las restricciones CORS. Es un permiso amplio: la extensión solo pide los archivos que el usuario indica o que están en la página de origen, pero se podría restringir pidiendo permisos de sitio opcionales.</div>
+</div></section>
+
+<!-- G. Retos -->
+<section class="tq-sec"><div class="wrap">
+ <h2>Retos técnicos</h2>
+ <p class="lead">Lo más delicado fue hacer en el navegador, sin programas externos, cosas que normalmente se delegan en herramientas de escritorio.</p>
+ <div class="tq-feats">
+  <div class="card"><h3>Recodificar vídeo sin un transcodificador</h3><p>El vídeo se reproduce en un elemento <code>video</code>, se dibuja en un canvas y se graba con MediaRecorder; el sonido pasa por Web Audio para que no suene mientras se procesa. Por eso trabaja a velocidad real y necesita la pestaña visible.</p></div>
+  <div class="card"><h3>Depender de lo que sabe grabar Chrome</h3><p>El código prueba una lista de tipos MIME para MP4 o WebM y, si el navegador no graba MP4, guarda en WebM y lo avisa en el resultado.</p></div>
+  <div class="card"><h3>Calidad al redimensionar</h3><p>Antes del dibujado final reduce la imagen a la mitad por pasos, que da un resultado más limpio que un único salto grande, y aplica después una máscara de enfoque ajustable.</p></div>
+  <div class="card"><h3>Llegar a un peso concreto</h3><p>Para JPEG y WebP hace una búsqueda binaria sobre la calidad (de 0,05 a 0,98) hasta quedarse justo por debajo del peso objetivo, y marca las imágenes que no lo consiguen.</p></div>
+  <div class="card"><h3>No bloquear la interfaz</h3><p>La codificación MP3 y GIF cede el control al navegador cada pocos bloques, y hay límites explícitos: 400 fotogramas de GIF, 300 fotogramas sueltos y 300 MB para convertir un enlace a MP3.</p></div>
+  <div class="card"><h3>Enlaces que no son archivos</h3><p>Comprueba el tipo de contenido y rechaza con un mensaje claro las páginas web y las emisiones HLS o DASH; al buscar en la web de origen avisa de los vídeos <code>blob:</code>, que no se pueden descargar. Toma el nombre de la cabecera <code>Content-Disposition</code> o del tipo MIME y evita nombres duplicados en el ZIP.</p></div>
+ </div>
+</div></section>
+
+<!-- H. Resultados -->
+<section class="tq-sec"><div class="wrap">
+ <h2>Resultados y estado</h2>
+ <p class="lead">Un caso de uso real, documentado con las capturas de arriba.</p>
+ <div class="tq-stats">
+  <div class="tq-stat"><b>3/3</b><span>imágenes procesadas</span></div>
+  <div class="tq-stat"><b>1200×800</b><span>medida común de salida</span></div>
+  <div class="tq-stat"><b>64 KB</b><span>peso medio (de 186–293 KB)</span></div>
+  <div class="tq-stat"><b>−68 %</b><span>peso en la imagen comparada</span></div>
+ </div>
+ <p class="tq-note"><strong>Alcance real:</strong> son cifras de un único lote de tres imágenes, no un estudio de rendimiento. El repositorio no incluye pruebas automatizadas, así que la verificación ha sido manual y no se publican resultados de pruebas.</p>
+ <h3 class="sub">Estado y límites</h3>
+ <div class="tq-two">
+  <div class="card"><h3>Estado actual</h3><p>Versión 2.0.0. Se usa mediante instalación local en modo desarrollador; <strong>no está publicada en Chrome Web Store</strong>.</p></div>
+  <div class="card"><h3>Limitaciones conocidas</h3><ul class="tq-list"><li>Recodificar vídeo lleva tanto como dura el vídeo</li><li>Solo procesa audio y vídeo que Chrome sepa reproducir</li><li>No descarga YouTube, TikTok, Vimeo ni emisiones por streaming</li><li>Ampliar una imagen pequeña no añade detalle</li></ul></div>
+ </div>
+ <p class="tq-note" style="margin-top:1.1rem"><strong>Posibles mejoras (no implementadas):</strong> pruebas automatizadas del procesado, un README del proyecto y permisos de sitio opcionales en lugar de acceso a todas las URL.</p>
  <p class="tq-back"><a class="btn primary" href="proyectos.html#kit">← Volver a proyectos</a> <a class="btn ghost" href="contacto.html">Contacto</a></p>
 </div></section>
 

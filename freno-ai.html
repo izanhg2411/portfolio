@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Freno AI · Proyectos · Izan Hernández</title>
-<meta name="description" content="Freno AI: extensión de Chrome con un tutor en el panel lateral que fomenta el uso responsable de la IA. Proyecto de Izan Hernández.">
+<meta name="description" content="Freno AI: extensión de Chrome (Manifest V3, TypeScript, React) con un tutor en el panel lateral que exige tu intento antes de dar pistas y solo da la solución cuando el método lo permite. Funciona con tu propia clave de Gemini, Anthropic u OpenAI. Proyecto de Izan Hernández.">
 
 <meta name="theme-color" content="#071226">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <meta property="og:type" content="website"><meta property="og:locale" content="es_ES">
-<meta property="og:title" content="Freno AI · Izan Hernández"><meta property="og:description" content="Freno AI: extensión de Chrome con un tutor en el panel lateral que fomenta el uso responsable de la IA.">
+<meta property="og:title" content="Freno AI · Izan Hernández"><meta property="og:description" content="Tutor con IA en el panel lateral de Chrome que pide tu intento antes de dar pistas.">
 <meta property="og:url" content="https://izanhg2411.github.io/portfolio/freno-ai.html">
 <meta property="og:image" content="https://izanhg2411.github.io/portfolio/img/proyectos/freno-ai.webp">
 <link rel="stylesheet" href="css/style.css">
@@ -24,13 +24,14 @@
 <noscript><p class="wrap"><a href="index.html">Inicio</a> · <a href="proyectos.html">Proyectos</a> · <a href="contacto.html">Contacto</a></p></noscript>
 <main id="contenido">
 
+<!-- A. Hero -->
 <div class="wrap">
  <div class="tq-hero">
   <div>
    <span class="eyebrow">Extensión de Chrome · IA responsable</span>
    <h1><em>Freno AI</em></h1>
-   <p class="hero-sub">Extensión de Chrome con un tutor en el panel lateral que promueve el uso responsable de la IA: ayuda a aprender en lugar de limitarse a copiar respuestas.</p>
-   <div class="chips" aria-label="Tecnologías"><span>Extensión de Chrome</span><span>Manifest V3</span><span>React</span><span>TypeScript</span><span>esbuild</span><span>API de Gemini / Anthropic / OpenAI</span></div>
+   <p class="hero-sub">Tutor con IA en el panel lateral de Chrome que pide tu intento antes de dar pistas y solo da la solución cuando el método lo permite. El orden lo impone la aplicación, no el modelo.</p>
+   <div class="chips" aria-label="Tecnologías"><span>Manifest V3</span><span>TypeScript</span><span>React 19</span><span>esbuild</span><span>Playwright</span><span>Gemini · Anthropic · OpenAI</span></div>
    <div class="cta">
     <a class="btn primary" href="proyectos.html#freno">← Volver a proyectos</a>
     <a class="btn ghost" data-pj="frenoCode" href="#">Código en GitHub</a>
@@ -38,46 +39,139 @@
   </div>
   <figure class="tq-shot">
    <div class="pj-bar" aria-hidden="true"><i></i><i></i><i></i></div>
-   <img src="img/proyectos/freno-ai.webp" alt="Captura de Freno AI en el panel lateral de Chrome" width="1600" height="1000" decoding="async">
+   <img src="img/proyectos/freno-ai.webp" alt="Freno AI en el panel lateral de Chrome: pantalla de inicio y ajustes con los tres proveedores de IA" width="1600" height="1000" decoding="async">
   </figure>
  </div>
 </div>
 
+<!-- B. Problema -->
 <section class="tq-sec"><div class="wrap">
- <h2>Finalidad y estado</h2>
- <p class="lead">Qué problema aborda este proyecto y en qué punto de desarrollo se encuentra.</p>
+ <h2>El problema</h2>
+ <p class="lead">Un asistente de IA puede dar la respuesta a la primera, y eso es justo lo que puede evitar que el estudiante piense.</p>
  <div class="tq-two">
-  <div class="card"><h3>Finalidad</h3><p>Que la IA sirva para pensar, no para dejar de hacerlo.</p></div>
-  <div class="card"><h3>Estado</h3><p>MVP 0.1 · uso local, no publicado</p></div>
+  <div class="card"><h3>La necesidad</h3><p>Al estudiar con IA es fácil pedir el resultado y copiarlo. Se avanza en la tarea, pero se aprende poco. Es una preocupación habitual en educación, aunque este proyecto no ha medido su alcance.</p></div>
+  <div class="card"><h3>Qué propone Freno AI</h3><p>Un tutor que impone un método: primero tu intento, después pistas progresivas, solo entonces la solución explicada y, al final, una pregunta corta para comprobar que se ha entendido.</p></div>
  </div>
 </div></section>
 
+<!-- C. Solución -->
+<section class="tq-sec"><div class="wrap">
+ <h2>La solución</h2>
+ <p class="lead">El recorrido de un ejercicio, de principio a fin. Cada paso se desbloquea según reglas de la aplicación.</p>
+ <ol class="tq-steps">
+  <li><strong>Planteas el ejercicio</strong><span>Lo pegas en el panel o seleccionas el texto en cualquier web y eliges «Trabajar este ejercicio con FRENO» con el botón derecho.</span></li>
+  <li><strong>Escribes tu intento</strong><span>Es obligatorio y debe tener contenido real, aunque sea breve o incompleto: no se juzga el esfuerzo por la longitud.</span></li>
+  <li><strong>Recibes pistas progresivas</strong><span>De una orientación vaga a una ayuda paso a paso. Entre pistas hay que volver a intentarlo.</span></li>
+  <li><strong>Se desbloquea la solución</strong><span>Explicada, conectada con el enunciado y con los fallos concretos de tus intentos.</span></li>
+  <li><strong>Respondes a una comprobación</strong><span>Una pregunta breve sobre el concepto, con una valoración razonada que no es un veredicto infalible.</span></li>
+  <li><strong>Queda en tu historial</strong><span>Con estadísticas de progreso guardadas en tu navegador.</span></li>
+ </ol>
+</div></section>
+
+<!-- D. Funcionalidades -->
 <section class="tq-sec"><div class="wrap">
  <h2>Funcionalidades</h2>
- <p class="lead">Lo que hace la extensión hoy.</p>
+ <p class="lead">Lo que hace la extensión en su versión actual (MVP 0.1).</p>
  <div class="tq-feats">
-  <div class="card"><span class="num">01</span><p>Primero escribes tu intento; la solución no se da de entrada.</p></div>
-  <div class="card"><span class="num">02</span><p>Tres niveles de pista, solución explicada y pregunta final de comprobación.</p></div>
-  <div class="card"><span class="num">03</span><p>Modo estricto y modo flexible; historial con tu progreso.</p></div>
-  <div class="card"><span class="num">04</span><p>Funciona con ejercicios de cualquier web (menú contextual al seleccionar texto).</p></div>
-  <div class="card"><span class="num">05</span><p>Usa tu propia clave de API: Gemini, Anthropic u OpenAI.</p></div>
-  <div class="card"><span class="num">06</span><p>Pruebas unitarias y de extremo a extremo (Playwright).</p></div>
+  <div class="card"><span class="num">01</span><h3>Intento primero</h3><p>La primera pista permanece bloqueada hasta que escribes un intento. La solución no se pide al modelo hasta que las reglas lo permiten.</p></div>
+  <div class="card"><span class="num">02</span><h3>Tres niveles de pista</h3><p>Orientación, ayuda concreta adaptada a tu intento y orientación paso a paso, sin entregar el resultado.</p></div>
+  <div class="card"><span class="num">03</span><h3>Modo estricto y flexible</h3><p>Estricto: pistas en orden, nuevo intento entre pistas y solución tras la tercera. Flexible: más ritmo, con solución desde la pista 2. El modo se fija al empezar cada ejercicio.</p></div>
+  <div class="card"><span class="num">04</span><h3>Solución explicada</h3><p>Pasos, relación con el enunciado, qué mejorar de tus intentos y por qué funciona. Indica si el resultado está verificado o hay dudas.</p></div>
+  <div class="card"><span class="num">05</span><h3>Pregunta de comprobación</h3><p>Una pregunta distinta del enunciado. Con una valoración correcta, parcial o incorrecta, y una pista si falla.</p></div>
+  <div class="card"><span class="num">06</span><h3>Funciona en cualquier web</h3><p>Menú contextual sobre el texto seleccionado que abre el panel lateral con el ejercicio ya cargado.</p></div>
+  <div class="card"><span class="num">07</span><h3>Tu propio proveedor de IA</h3><p>Gemini, Anthropic u OpenAI con tu clave, modelo editable y botón «Probar conexión». Reintenta solo los errores transitorios.</p></div>
+  <div class="card"><span class="num">08</span><h3>Historial y estadísticas</h3><p>Ejercicios terminados, comprobaciones superadas, racha y días estudiados, con búsqueda, filtro y borrado.</p></div>
+  <div class="card"><span class="num">09</span><h3>Nivel y apariencia</h3><p>Nivel académico (ESO, Bachillerato, Universidad) que adapta las explicaciones, y tema oscuro, claro o automático.</p></div>
  </div>
 </div></section>
 
+<!-- Capturas -->
 <section class="tq-sec"><div class="wrap">
- <h2>Captura real</h2>
- <p class="lead">Pantalla de la extensión en funcionamiento.</p>
- <div class="tq-gallery one">
-  <figure><img src="img/proyectos/freno-ai.webp" alt="Freno AI en el panel lateral de Chrome" width="1600" height="1000" loading="lazy" decoding="async"><figcaption><strong>Freno AI</strong>Panel lateral de Chrome con el tutor de Freno AI.</figcaption></figure>
+ <h2>Capturas reales</h2>
+ <p class="lead">Una sesión con un ejercicio de programación (calcular un precio con IVA), con Gemini como proveedor.</p>
+ <div class="tq-gallery">
+  <figure><img src="img/proyectos/freno-ai/pista-1.webp" alt="Ejercicio en modo estricto con el enunciado, el primer intento del usuario y la pista 1 de orientación" width="395" height="922" loading="lazy" decoding="async"><figcaption><strong>Intento y pista 1</strong>Tras escribir su intento, el usuario recibe una orientación y debe volver a intentarlo.</figcaption></figure>
+  <figure><img src="img/proyectos/freno-ai/pista-3.webp" alt="Pista 3 paso a paso con una estructura de código incompleta y el botón Ver solución todavía bloqueado" width="415" height="717" loading="lazy" decoding="async"><figcaption><strong>Pista 3</strong>Ayuda paso a paso con huecos por completar. La solución se desbloquea tras otro intento.</figcaption></figure>
+  <figure><img src="img/proyectos/freno-ai/solucion.webp" alt="Solución explicada con la relación con el enunciado, qué mejorar de los intentos y por qué funciona" width="408" height="926" loading="lazy" decoding="async"><figcaption><strong>Solución explicada</strong>Conecta la solución con el enunciado y señala qué mejorar de los intentos.</figcaption></figure>
  </div>
- <p class="tq-pending"><strong>Capturas pendientes de añadir:</strong> el resto de pantallas de la extensión. No se muestran imágenes simuladas.</p>
+ <div class="tq-gallery">
+  <figure><img src="img/proyectos/freno-ai/comprobacion.webp" alt="Pregunta de comprobación con un campo de respuesta y el aviso de que la valoración la genera una IA" width="430" height="423" loading="lazy" decoding="async"><figcaption><strong>Comprobación</strong>Pregunta breve sobre el concepto. El aviso recuerda que la valoración no es infalible.</figcaption></figure>
+  <figure><img src="img/proyectos/freno-ai/historial.webp" alt="Historial con ejercicios terminados, comprobaciones superadas, racha y días estudiados" width="420" height="471" loading="lazy" decoding="async"><figcaption><strong>Historial</strong>Estadísticas de progreso, búsqueda y filtro de ejercicios.</figcaption></figure>
+  <figure><img src="img/proyectos/freno-ai/ajustes.webp" alt="Ajustes: modo de aprendizaje, proveedor de IA, modelo, clave de API, nivel y tema" width="396" height="800" loading="lazy" decoding="async"><figcaption><strong>Ajustes</strong>Modo de aprendizaje, proveedor, modelo, clave, nivel y tema. La clave no se muestra.</figcaption></figure>
+ </div>
+ <p class="tq-pending"><strong>Capturas pendientes de añadir:</strong> el menú contextual sobre texto seleccionado, el modo flexible y un mensaje de error de clave o de conexión. No se muestran imágenes simuladas.</p>
 </div></section>
 
+<!-- E. Arquitectura -->
 <section class="tq-sec"><div class="wrap">
- <h2>Tecnologías</h2>
- <p class="lead">Lo que he utilizado para construirla.</p>
- <div class="chips" aria-label="Tecnologías"><span>Extensión de Chrome</span><span>Manifest V3</span><span>React</span><span>TypeScript</span><span>esbuild</span><span>API de Gemini / Anthropic / OpenAI</span></div>
+ <h2>Arquitectura y tecnologías</h2>
+ <p class="lead">La lógica pedagógica vive en código propio y probado. El modelo de IA solo redacta pistas y explicaciones cuando la aplicación se lo pide.</p>
+ <ol class="tq-flow" aria-label="Flujo de una petición">
+  <li><b>Panel lateral</b><span>Interfaz en React</span></li>
+  <li class="core"><b>Reglas de etapa</b><span>¿Está desbloqueada la pista o la solución?</span></li>
+  <li class="core"><b>Proveedor de IA</b><span>Gemini, Anthropic u OpenAI con tu clave</span></li>
+  <li class="core"><b>Validación</b><span>La respuesta debe cumplir el esquema esperado</span></li>
+  <li><b>chrome.storage.local</b><span>Ejercicio, historial y ajustes</span></li>
+ </ol>
+ <ul class="tq-arch">
+  <li><b>core/</b><small>Dominio puro y sin red: tipos, máquina de etapas (qué se puede pedir en cada momento) y estadísticas.</small></li>
+  <li><b>ai/</b><small>Construcción de los prompts por etapa, cliente de los tres proveedores, validación de las respuestas y orquestación del tutor.</small></li>
+  <li><b>sidepanel/</b><small>Interfaz React del panel lateral: ejercicio, historial y ajustes.</small></li>
+  <li><b>background.ts</b><small>Service worker que abre el panel lateral y crea el menú contextual para el texto seleccionado.</small></li>
+  <li><b>storage.ts</b><small>Único acceso a <code>chrome.storage</code>: todo en <code>local</code>, salvo el texto pendiente del menú contextual, que va a <code>session</code>.</small></li>
+  <li><b>Compilación</b><small>esbuild genera <code>dist/</code> con el panel, el service worker y el manifest. Con una CSP de extensión estricta (<code>script-src 'self'</code>).</small></li>
+ </ul>
+ <div class="chips" aria-label="Tecnologías"><span>Chrome Extensions Manifest V3</span><span>Side Panel API</span><span>TypeScript</span><span>React 19</span><span>esbuild</span><span>Playwright</span><span>tsx</span><span>chrome.storage</span></div>
+</div></section>
+
+<!-- F. Privacidad -->
+<section class="tq-sec"><div class="wrap">
+ <h2>Privacidad y claves de API</h2>
+ <p class="lead">Freno AI no tiene servidores propios, pero tampoco es un sistema cerrado: para funcionar envía tu ejercicio al proveedor de IA que elijas.</p>
+ <div class="tq-two">
+  <div class="card"><h3>Qué permanece en tu navegador</h3><ul class="tq-list"><li>Ajustes, nivel, tema y modo de aprendizaje</li><li>Ejercicios, intentos, pistas, soluciones e historial</li><li>Estadísticas y racha</li><li>Tus claves de API</li></ul><p>Todo se guarda en <code>chrome.storage.local</code>. No hay cuenta, servidor propio ni analítica.</p></div>
+  <div class="card"><h3>Qué se envía al proveedor elegido</h3><ul class="tq-list"><li>Tu nivel académico y la asignatura detectada</li><li>El enunciado (hasta 6000 caracteres) y el contexto opcional (hasta 2000)</li><li>Tus intentos y las pistas ya dadas</li><li>En la comprobación, la solución mostrada y tu respuesta</li></ul><p>No se envía tu historial anterior ni la URL de la página; solo se envía lo del ejercicio que estás trabajando, y únicamente al proveedor seleccionado.</p></div>
+ </div>
+ <div class="tq-feats">
+  <div class="card"><h3>Gemini (Google)</h3><p>Destino: <code>generativelanguage.googleapis.com</code>. La clave viaja en la cabecera <code>x-goog-api-key</code>, no en la URL.</p></div>
+  <div class="card"><h3>Anthropic</h3><p>Destino: <code>api.anthropic.com</code>. La clave viaja en la cabecera <code>x-api-key</code>.</p></div>
+  <div class="card"><h3>OpenAI</h3><p>Destino: <code>api.openai.com</code>. La clave viaja en la cabecera <code>Authorization</code>.</p></div>
+ </div>
+ <div class="tq-note"><strong>Las claves se guardan sin cifrar</strong> en el almacenamiento local de la extensión. Lo que sí hace: solo las envía al proveedor elegido, no las muestra en pantalla, no las incluye en los mensajes de error (hay una prueba que lo comprueba) y permite borrarlas desde Ajustes. Conviene usar una clave con límite de gasto y no compartirla.</div>
+ <div class="tq-note" style="margin-top:1rem"><strong>Esto no es privacidad absoluta.</strong> Lo que envías queda sujeto a las condiciones de uso y retención de datos de cada proveedor, que Freno AI no controla. Quien tenga acceso a tu perfil de Chrome podría leer las claves guardadas. Permisos: <code>storage</code>, <code>sidePanel</code> y <code>contextMenus</code>, y acceso solo a los tres dominios de los proveedores, sin content scripts.</div>
+</div></section>
+
+<!-- G. Retos -->
+<section class="tq-sec"><div class="wrap">
+ <h2>Retos técnicos</h2>
+ <p class="lead">El reto central era que la IA no pudiera saltarse el método que la propia aplicación impone.</p>
+ <div class="tq-feats">
+  <div class="card"><h3>Que mande la aplicación, no el modelo</h3><p>Las reglas de etapa deciden antes de llamar a la IA qué se puede pedir. Una prueba comprueba que, con la etapa bloqueada, el proveedor ni siquiera se consulta, y otra que un error de la IA no hace avanzar de etapa.</p></div>
+  <div class="card"><h3>Enunciados que intentan manipular al tutor</h3><p>El texto del ejercicio se delimita con etiquetas y se neutralizan las que intenten cerrarlas. El modelo recibe además la indicación de tratarlo como datos. Una prueba cubre ese caso.</p></div>
+  <div class="card"><h3>Respuestas de IA impredecibles</h3><p>Se piden en JSON y se validan contra un esquema. Una respuesta inválida se reintenta una vez; si vuelve a fallar, se muestra un error y la etapa no avanza.</p></div>
+  <div class="card"><h3>Tres proveedores, tres formatos</h3><p>Cada uno tiene su cuerpo de petición y su autenticación. Los errores se clasifican (clave, límite, red, tiempo, servidor) y los transitorios se reintentan con espera, con un tiempo máximo de 60 s por llamada.</p></div>
+  <div class="card"><h3>Modelos que «piensan»</h3><p>En Gemini se amplía el margen de tokens de salida para que el razonamiento interno no corte el JSON de la respuesta.</p></div>
+  <div class="card"><h3>Abrir el panel desde el menú contextual</h3><p>El texto seleccionado se guarda un momento en almacenamiento de sesión y el panel lo recoge al abrirse, de modo que el ejercicio llega ya cargado.</p></div>
+ </div>
+</div></section>
+
+<!-- H. Resultados -->
+<section class="tq-sec"><div class="wrap">
+ <h2>Resultados y pruebas</h2>
+ <p class="lead">Lo que se ha ejecutado y qué cubre cada tipo de prueba.</p>
+ <div class="tq-stats">
+  <div class="tq-stat"><b>24/24</b><span>pruebas unitarias superadas</span></div>
+  <div class="tq-stat"><b>14/14</b><span>pasos E2E superados</span></div>
+  <div class="tq-stat"><b>OK</b><span>compilación con esbuild</span></div>
+  <div class="tq-stat"><b>3</b><span>proveedores de IA soportados</span></div>
+ </div>
+ <div class="tq-note"><strong>Alcance real.</strong> Las pruebas unitarias cubren las reglas de etapa, las estadísticas, la validación y los tres clientes de proveedor, con <code>fetch</code> simulado. El E2E se ejecuta en Chromium con la extensión cargada y una API simulada de Anthropic, sin red ni claves. <strong>No hay pruebas automáticas con llamadas reales a Gemini, Anthropic ni OpenAI</strong>, y no hay prueba E2E con Gemini. Las capturas corresponden a un uso real con Gemini. La calidad pedagógica de las pistas no se ha validado con estudiantes.</div>
+ <h3 class="sub">Estado y próximos pasos</h3>
+ <div class="tq-two">
+  <div class="card"><h3>Estado actual</h3><p>MVP 0.1 para uso local. <strong>No está publicado en Chrome Web Store</strong>: se instala compilando el proyecto y cargando <code>dist/</code> en modo desarrollador.</p></div>
+  <div class="card"><h3>Limitaciones conocidas</h3><ul class="tq-list"><li>Es fricción educativa, no un bloqueo: se puede saltar usando otra pestaña</li><li>Una pista puede revelar más de lo deseado</li><li>La valoración de la comprobación la genera una IA y puede equivocarse</li><li>Las claves están en el navegador, sin cifrar</li></ul></div>
+ </div>
+ <p class="tq-note" style="margin-top:1.1rem"><strong>Posibles mejoras (no implementadas):</strong> validar las pistas con estudiantes reales, comprobar tipos reales en integración continua y, si el proyecto creciera, mover las claves a un servidor propio.</p>
  <p class="tq-back"><a class="btn primary" href="proyectos.html#freno">← Volver a proyectos</a> <a class="btn ghost" href="contacto.html">Contacto</a></p>
 </div></section>
 
