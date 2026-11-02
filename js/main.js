@@ -13,7 +13,7 @@ var CONFIG = {
   vantor:   'https://vantor-v12.vercel.app',
   // Código en GitHub. Si empieza por "[" el botón se muestra como "Pronto"
   kitCode:    'https://github.com/izanhg2411/kit-multimedia',
-  frenoCode:  '[PENDIENTE: repositorio de Freno AI]',
+  frenoCode:  'https://github.com/izanhg2411/freno-ai',
   vantorCode: 'https://github.com/izanhg2411/vantor-v12',
   outfitCode: 'https://github.com/izanhg2411/outfitai',
   // TEORIQ: cuando crees el repositorio, sustituye el marcador por la URL real (p. ej. https://github.com/izanhg2411/teoriq)
@@ -35,7 +35,7 @@ for (var k in CONFIG) CONFIG[k] = CONFIG[k].replace(/^\[(.*(@|https?:).*)\]$/, '
     h.outerHTML = '<header><nav class="wrap" aria-label="Navegación principal"><a class="logo" href="index.html">Izan<span>.</span>dev</a><button class="burger" aria-expanded="false" aria-controls="menu">Menú</button><ul class="menu" id="menu">'+items+'</ul></nav></header>';
   }
   var f = document.getElementById('site-footer');
-  if(f) f.innerHTML = '<div class="wrap">© '+new Date().getFullYear()+' Izan Hernández García Cabañes Fernández · Estudiante de DAW · <a href="https://github.com/izanhg2411" target="_blank" rel="noopener">GitHub</a></div>';
+  if(f) f.innerHTML = '<div class="wrap">© '+new Date().getFullYear()+' Izan Hernández García · Estudiante de DAW · <a href="https://github.com/izanhg2411" target="_blank" rel="noopener">GitHub</a></div>';
 
   var b = document.querySelector('.burger'), m = document.getElementById('menu');
   b.addEventListener('click', function(){ b.setAttribute('aria-expanded', m.classList.toggle('open')); });
