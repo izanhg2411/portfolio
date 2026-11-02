@@ -302,3 +302,8 @@ footer a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 .tq-gallery+.tq-gallery{margin-top:1.2rem}
 .tq-gallery.one.sm{max-width:420px}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* Inicio: hero alineado con el resto, tarjetas 3+2 y escala en pantallas anchas */
+.hero>.wrap{width:100%}
+.wrap{max-width:65rem}
+@media(min-width:900px){.thumbs{grid-template-columns:repeat(6,1fr)}.thumbs>.thumb{grid-column:span 2}.thumbs>.thumb:nth-child(n+4){grid-column:span 3}}
+@media(min-width:1700px){html{font-size:clamp(16px,calc(16px + (100vw - 1700px)*.0045),40px)}}
