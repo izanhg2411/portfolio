@@ -39,7 +39,7 @@
   </div>
   <figure class="tq-shot">
    <div class="pj-bar" aria-hidden="true"><i></i><i></i><i></i></div>
-   <img src="img/proyectos/outfit-ai/outfit-resumen.webp" alt="Tres pantallas de Outfit AI: formulario de preferencias con valores de demostración y dos outfits generados con productos de una tienda real" width="1600" height="1000" decoding="async">
+   <img src="img/proyectos/outfit-ai/outfit-resumen.webp" alt="Tres capturas del panel de Outfit AI: a la izquierda, el formulario de preferencias y un outfit de cuatro prendas con imágenes genéricas, junto al texto «127.0.0.1 (tienda no preparada: modo genérico)»; en el centro, un panel con el texto «Bershka · 16 producto(s)» y un outfit de tres prendas con fotos de producto; a la derecha, la vista previa de un outfit de tres prendas con total de 89,97 € y el botón «Añadir a la cesta»" width="1600" height="1000" decoding="async">
   </figure>
  </div>
 </div>
@@ -92,7 +92,7 @@
  <p class="lead">Las capturas son una demostración del prototipo y no acreditan una integración con ninguna tienda. El formulario se ha capturado con valores ficticios de demostración y una tienda simulada en local.</p>
  <div class="tq-gallery">
   <figure><img src="img/proyectos/outfit-ai/formulario-demo.webp" alt="Formulario de preferencias de Outfit AI con valores de demostración y el aviso de detección de productos" width="758" height="1000" loading="lazy" decoding="async"><figcaption><strong>Preferencias (valores ficticios)</strong>Capturada con la extensión real sobre una tienda simulada en local. Los datos son de ejemplo.</figcaption></figure>
-  <figure><img src="img/proyectos/outfit-ai/panel-bershka.webp" alt="Panel con un outfit de tres prendas en vista previa a partir de 16 productos detectados en la página" width="420" height="932" loading="lazy" decoding="async"><figcaption><strong>Outfit de demostración</strong>16 productos con precio detectados en la página y un outfit de tres prendas.</figcaption></figure>
+  <figure><img src="img/proyectos/outfit-ai/panel-bershka.webp" alt="Panel de Outfit AI sobre la web real de Bershka, usada como referencia visual: listado de 16 productos y vista previa de un outfit de tres prendas" width="420" height="932" loading="lazy" decoding="async"><figcaption><strong>Outfit de demostración</strong>Captura sobre la web real de Bershka, usada como referencia visual. Muestra el panel con 16 productos y un outfit de tres prendas. Outfit AI es un prototipo y no tiene una integración verificada con Bershka.</figcaption></figure>
   <figure><img src="img/proyectos/outfit-ai/vista-previa-bershka.webp" alt="Vista previa del outfit con total, presupuesto inicial, dinero restante y aviso de prendas que faltan" width="420" height="846" loading="lazy" decoding="async"><figcaption><strong>Presupuesto y avisos</strong>Total 89,97 € sobre 200 €, con el aviso de que faltan zapatillas y de confirmar tallas y precios en la tienda.</figcaption></figure>
  </div>
  <div class="tq-gallery one sm">
@@ -140,8 +140,8 @@
  <div class="tq-feats">
   <div class="card"><h3>Leer tiendas sin conocer su estructura</h3><p>Un modo genérico combina JSON-LD y tarjetas visibles. No hay adaptadores por tienda porque ninguna estructura se ha verificado, y la extensión no depende de selectores inventados.</p></div>
   <div class="card"><h3>Garantizar el presupuesto</h3><p>La búsqueda descarta cualquier combinación que, con la opción más barata del resto, ya no cabría. Una prueba aleatoria con 300 catálogos comprueba que el total nunca supera el presupuesto y que las cuentas cuadran.</p></div>
-  <div class="card"><h3>Precios y nombres poco fiables</h3><p>Formatos como <code>1.299,00 €</code>, precios partidos en varios elementos y precios tachados. En Bershka, el texto alternativo de una foto describía un look completo, así que el nombre se toma del enlace o de la URL.</p></div>
-  <div class="card"><h3>Chrome oculta la URL sin permiso</h3><p>Sin permiso sobre la pestaña, <code>tab.url</code> llega vacía y el panel decía que no era una tienda estando en Bershka. Ahora distingue ese caso, lo explica y ofrece pedir el permiso de la tienda.</p></div>
+  <div class="card"><h3>Precios y nombres poco fiables</h3><p>Formatos como <code>1.299,00 €</code>, precios partidos en varios elementos y precios tachados. En una página de Bershka usada como referencia, el texto alternativo de una foto describía un look completo, así que el nombre se toma del enlace o de la URL. Es una decisión de la lectura genérica de productos, no una compatibilidad verificada con Bershka.</p></div>
+  <div class="card"><h3>Chrome oculta la URL sin permiso</h3><p>Sin permiso sobre la pestaña, <code>tab.url</code> llega vacía y el panel decía que la página no era una tienda, incluso en una página de Bershka usada como referencia. Ahora distingue ese caso, lo explica y ofrece pedir el permiso de la tienda. Este flujo de permisos no está verificado en tiendas reales.</p></div>
   <div class="card"><h3>Automatizar la cesta sin dar falsos positivos</h3><p>Se reescribió porque la versión anterior cerraba fichas siempre, confirmaba por cambios de texto y podía añadir duplicados. Ahora espera a la respuesta de la tienda, solo confirma con una petición aceptada y no cierra fichas hasta comprobar la cesta real.</p></div>
   <div class="card"><h3>Panel lateral en lugar de popup</h3><p>Un popup se cierra al perder el foco, y con él el proceso en curso. El panel lateral sigue abierto y la sesión se restaura al volver.</p></div>
  </div>
