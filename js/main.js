@@ -16,8 +16,7 @@ var CONFIG = {
   frenoCode:  'https://github.com/izanhg2411/freno-ai',
   vantorCode: 'https://github.com/izanhg2411/vantor-v12',
   outfitCode: 'https://github.com/izanhg2411/outfitai',
-  // TEORIQ: cuando crees el repositorio, sustituye el marcador por la URL real (p. ej. https://github.com/izanhg2411/teoriq)
-  teoriqCode: '[PENDIENTE: repositorio de TEORIQ]'
+  teoriqCode: 'https://github.com/izanhg2411/teoriq'
 };
 
 for (var k in CONFIG) CONFIG[k] = CONFIG[k].replace(/^\[(.*(@|https?:).*)\]$/, '$1');
