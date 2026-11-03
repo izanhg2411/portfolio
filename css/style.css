@@ -1,3 +1,8 @@
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(../fonts/inter-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(../fonts/inter-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(../fonts/inter-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;src:url(../fonts/space-grotesk-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;src:url(../fonts/space-grotesk-latin-700-normal.woff2) format('woff2')}
 :root{--bg:#f5f7fb;--surface:#fff;--text:#0b1b3a;--muted:#46536e;--accent:#c2410c;--accent-fill:#f97316;--on-accent:#0b1b3a;--line:#d8deea;--field:#6b7894;--canvas:11,27,58;color-scheme:light}
 @media(prefers-color-scheme:dark){:root{--bg:#071226;--surface:#0d1f3d;--text:#eaf0fb;--muted:#aab6cf;--accent:#ff8a3d;--accent-fill:#ff8a3d;--on-accent:#071226;--line:#1f3560;--field:#7f92b8;--canvas:255,138,61;color-scheme:dark}}
 *{box-sizing:border-box}
