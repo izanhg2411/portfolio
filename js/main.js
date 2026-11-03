@@ -165,3 +165,29 @@ for (var k in CONFIG) CONFIG[k] = CONFIG[k].replace(/^\[(.*(@|https?:).*)\]$/, '
   addEventListener('resize', function(){ size(); if(reduce) draw(); });
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(){ size(); if(reduce) draw(); });
 })();
+
+/* Vídeos de proyectos: ventana (dialog) para "Ver vídeo" */
+(function(){
+  var btns = document.querySelectorAll('[data-video]');
+  if(!btns.length || typeof HTMLDialogElement === 'undefined') return;
+  var d = document.createElement('dialog');
+  d.className = 'vid-dialog';
+  d.innerHTML = '<div class="vid-box"><div class="vid-head"><strong class="vid-title"></strong><button type="button" class="vid-close" aria-label="Cerrar vídeo">Cerrar</button></div><video controls muted playsinline preload="none"></video></div>';
+  document.body.appendChild(d);
+  var v = d.querySelector('video'), t = d.querySelector('.vid-title'), last;
+  function close(){ if(d.open) d.close(); }
+  d.querySelector('.vid-close').addEventListener('click', close);
+  d.addEventListener('click', function(e){ if(e.target === d) close(); });
+  d.addEventListener('close', function(){ v.pause(); v.removeAttribute('src'); v.load(); if(last) last.focus(); });
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      last = b;
+      t.textContent = b.dataset.title;
+      v.setAttribute('aria-label', b.dataset.title);
+      v.poster = b.dataset.poster;
+      v.width = b.dataset.w; v.height = b.dataset.h;
+      v.src = b.dataset.video;
+      d.showModal();
+    });
+  });
+})();

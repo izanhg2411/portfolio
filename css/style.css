@@ -312,3 +312,17 @@ footer a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 .wrap{max-width:65rem}
 @media(min-width:900px){.thumbs{grid-template-columns:repeat(6,1fr)}.thumbs>.thumb{grid-column:span 2}.thumbs>.thumb:nth-child(n+4){grid-column:span 3}}
 @media(min-width:1700px){html{font-size:clamp(16px,calc(16px + (100vw - 1700px)*.0045),40px)}}
+
+/* Vídeos de proyectos */
+.demo-video{margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.demo-video video{display:block;width:100%;height:auto;background:#000}
+.demo-video figcaption{padding:.8rem 1rem;color:var(--muted);font-size:.95rem}
+.demo-narrow{max-width:360px}
+.demo-wide{max-width:900px}
+.vid-dialog{border:1px solid var(--line);border-radius:16px;padding:0;background:var(--surface);color:var(--text);max-width:min(92vw,900px);max-height:92vh;overflow:auto}
+.vid-dialog::backdrop{background:rgba(0,0,0,.65)}
+.vid-box{padding:1rem}
+.vid-head{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:.8rem}
+.vid-close{background:transparent;color:var(--text);border:2px solid var(--line);border-radius:10px;padding:.4rem .8rem;font:600 .92rem 'Inter',sans-serif;cursor:pointer}
+.vid-close:hover{border-color:var(--accent-fill)}
+.vid-dialog video{display:block;margin:0 auto;width:auto;max-width:100%;max-height:72vh;height:auto;background:#000;border-radius:10px}
