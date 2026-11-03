@@ -191,3 +191,20 @@ for (var k in CONFIG) CONFIG[k] = CONFIG[k].replace(/^\[(.*(@|https?:).*)\]$/, '
     });
   });
 })();
+
+/* Portada: bucle de TEORIQ. Solo se carga en pantallas anchas, cuando se ve, y respeta "reducir movimiento" */
+(function(){
+  var fig = document.querySelector('.hero-demo');
+  if(!fig) return;
+  var v = fig.querySelector('video'), btn = fig.querySelector('.hd-pause');
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, paused = reduce, loaded = false;
+  function visible(){ return fig.offsetParent !== null; }
+  function play(){ if(paused || !visible()) return; if(!loaded){ v.src = v.dataset.src; loaded = true; } var p = v.play(); if(p && p.catch) p.catch(function(){}); }
+  function label(){ btn.textContent = paused ? 'Reproducir' : 'Pausar'; btn.setAttribute('aria-pressed', paused); }
+  btn.addEventListener('click', function(){ paused = !paused; label(); if(paused) v.pause(); else play(); });
+  label();
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(e){ if(e[0].isIntersecting) play(); else v.pause(); }).observe(fig);
+  } else play();
+  addEventListener('resize', function(){ if(!visible()) v.pause(); });
+})();
